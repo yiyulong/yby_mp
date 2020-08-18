@@ -1,0 +1,202 @@
+/**index.wxss**/
+page {
+  padding-top: 100rpx;
+}
+/* tab栏 */
+.tabs-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100rpx;
+  z-index: 1;
+  background: #fff;
+}
+
+
+/** home-box **/
+.home-box [class$="container"] {
+  margin-bottom: 40rpx;
+}
+
+/* 轮播图 */
+.swiper-container {
+  margin-top: 16rpx;
+}
+.carousel-swiper {
+  height: 950rpx;
+}
+.carousel-image {
+  width: 100%;
+  height: 100%;
+}
+/* 通用样式 */
+.title-content {
+  padding: 40rpx 0;
+}
+.main-content {
+  overflow: hidden;
+}
+
+/* 时装系列 */
+.fashion-container {
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+.fashion-container .main-content {
+  margin-bottom: -20rpx;
+}
+.fashion-item {
+  background: #f4f4f4;
+  margin-bottom: 20rpx;
+}
+.fashion-item .img-content {
+  padding-top: 130%;
+  margin-bottom: 40rpx;
+  position: relative;
+}
+.fashion-item .img-content image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.fashion-item .title, .fashion-item .subTitle {
+  color: var(--sub-textColor);
+  line-height: 40rpx;
+  text-align: center;
+}
+.fashion-item.active .title, .fashion-item.active .subTitle {
+  color: var(--activeColor);
+}
+.fashion-item .title {
+  font-size: 20rpx;
+  padding-bottom: 10rpx;
+}
+.fashion-item .subTitle {
+  font-size: 22rpx;
+  text-decoration: underline;
+  padding-bottom: 30rpx;
+}
+.fashion-item .subTitle text {
+  display: inline-block;
+  border-bottom: 1px solid currentColor;
+}
+
+/* 精选分类 */
+.category-container {}
+.category-container .main-content {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  margin: -5rpx 0;
+}
+.category-container .left-section {
+  width: 30%;
+  flex: none;
+  margin-right: 10rpx;
+  padding: 5rpx 0;
+}
+.category-container .right-section {
+  flex: 1;
+}
+.category-item {
+  background: #f4f4f4;
+}
+.category-item .img-content {
+  position: relative;
+}
+.category-item .img-content image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.category-item .title {
+  font-size: 20rpx;
+  color: var(--sub-textColor);
+  text-align: center;
+}
+/* left-section */
+.left-section .category-item .img-content {
+  padding-top: 250%;
+}
+.left-section .category-item .title {
+  line-height: 70rpx;
+}
+/* right-section */
+.right-section .outWrap {
+  height: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: stretch;
+  margin: 0 -5rpx;
+}
+.right-section .outWrap .inWrap {
+  flex: 33.33333333%;
+  padding: 5rpx;
+}
+.right-section .category-item {
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+}
+.right-section .category-item .img-content {
+  flex: auto;
+}
+.right-section .category-item .title {
+  line-height: 52rpx;
+}
+/* 精选商品信息 */
+.choiceness-container {}
+.choiceness-container .carousel-content {
+  margin-bottom: 18rpx;
+}
+.choiceness-container .carousel-content .carousel-swiper {
+  height: 480rpx;
+}
+.choiceness-container .carousel-content .carousel-swiper .carousel-swiper-item {
+  position: relative;
+}
+.choiceness-container .carousel-content .carousel-swiper .carousel-swiper-item .moreDetail {
+  display: inline-block;
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+  padding: 0 20rpx;
+  background: #dededd;
+  box-shadow: 0rpx 1rpx 0rpx 0rpx 
+		rgba(0, 0, 0, 0.29);
+  opacity: 0.76;
+  color: var(--black);
+  font-size: 20rpx;
+}
+.choiceness-container .product-content {
+  margin-bottom: -14rpx;
+  overflow-x: hidden;
+}
+.choiceness-container .product-content .pdtItem {
+  margin-bottom: 14rpx;
+}
+/* pdf信息 */
+.pdf-container .carousel-content .carousel-swiper {
+  height: 480rpx;
+}
+.pdf-container .carousel-content .carousel-swiper .carousel-swiper-item {
+  position: relative;
+}
+.pdf-container .carousel-content .carousel-swiper .carousel-swiper-item .moreDetail {
+  display: inline-block;
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+  padding: 0 20rpx;
+  background: #dededd;
+  box-shadow: 0rpx 1rpx 0rpx 0rpx 
+		rgba(0, 0, 0, 0.29);
+  opacity: 0.76;
+  color: var(--black);
+  font-size: 20rpx;
+}

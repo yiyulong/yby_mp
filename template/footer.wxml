@@ -1,0 +1,7 @@
+<template name="footer">
+  <view class="weui-footer weui-footer_fixed-bottom">
+    <view class="weui-footer__text">该系统仅供内部帐号使用</view>
+    <view class="weui-footer__text">Copyright © 2020 DinglianTech</view>
+    <view class="weui-footer__text">{{ version }}</view>
+  </view>
+</template>

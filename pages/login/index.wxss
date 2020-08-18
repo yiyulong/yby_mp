@@ -1,0 +1,26 @@
+/**login index.wxss**/
+page {
+  text-align: center;
+  padding: 0 80rpx;
+}
+
+/* 品牌名称 */
+.brand-name {
+  font-size: 40rpx;
+  font-weight: bold;
+  line-height: 40rpx;
+}
+/* 封面 */
+.cover {
+  margin-top: 40rpx;
+  padding: 0 30rpx;
+}
+.cover image {
+  max-width: 100%;
+  min-height: 50vh;
+}
+
+/* 登陆按钮 */
+.login-btn {
+  margin-top: 20rpx;
+}

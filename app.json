@@ -1,0 +1,76 @@
+{
+  "pages":[
+    "pages/login/index",
+    "pages/index/index",
+    "pages/rank/index",
+    "pages/cart/index",
+    "pages/category/index",
+    "pages/my/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "YES BY YESIR",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#707070",
+    "selectedColor": "#2c2c2c",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/assets/icon/home.png",
+        "selectedIconPath": "/assets/icon/home_selected.png"
+      },
+      {
+        "pagePath": "pages/rank/index",
+        "text": "TOP榜单",
+        "iconPath": "/assets/icon/rank.png",
+        "selectedIconPath": "/assets/icon/rank_selected.png"
+      },
+      {
+        "pagePath": "pages/cart/index",
+        "text": "购物车",
+        "iconPath": "/assets/icon/cart.png",
+        "selectedIconPath": "/assets/icon/cart_selected.png"
+      },
+      {
+        "pagePath": "pages/category/index",
+        "text": "类目",
+        "iconPath": "/assets/icon/category.png",
+        "selectedIconPath": "/assets/icon/category_selected.png"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我的",
+        "iconPath": "/assets/icon/my.png",
+        "selectedIconPath": "/assets/icon/my_selected.png"
+      }
+    ]
+  },
+  "subPackages": [
+    {
+      "name": "other",
+      "root": "subPages/other/",
+      "pages": [
+        "webPage/index"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/index/index": {
+      "packages": ["other"]
+    }
+  },
+  "usingComponents": {
+    "van-field": "@vant/weapp/field/index",
+    "van-button": "@vant/weapp/button/index"
+  },
+  "useExtendedLib": {
+    "weui": true
+  },
+  "sitemapLocation": "sitemap.json"
+}

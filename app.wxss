@@ -1,0 +1,40 @@
+/**app.wxss**/
+@import './miniprogram_npm/@vant/weapp/common/index.wxss';
+
+page, view {
+  box-sizing: border-box;
+}
+
+page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+    Segoe UI, Arial, Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei',
+    sans-serif;
+
+  --black: #000;
+  --white: #fff;
+
+  --primaryColor: #070707;
+  --secondColor: #151515;
+  --textColor: #1e1e1e;
+
+  --sub-textColor: #5a5959;
+
+  --activeColor: #ce0000;
+}
+
+/* titleGroup.wxml template样式 */
+.titleGroup {
+  text-align: center;
+}
+.titleGroup > .title {
+  font-size: 32rpx;
+  font-weight: bold;
+  line-height: 47rpx;
+  color: var(--primaryColor)
+}
+.titleGroup > .subTitle {
+  font-size: 24rpx;
+  line-height: 47rpx;
+  color: var(--secondColor);
+  letter-spacing: 6rpx;
+}

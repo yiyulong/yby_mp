@@ -1,0 +1,22 @@
+{
+  "name": "yby_mp",
+  "version": "1.0.0",
+  "description": "yes by yesir miniprogram",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yiyulong/yby_mp.git"
+  },
+  "author": "yiyulong@live.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yiyulong/yby_mp/issues"
+  },
+  "homepage": "https://github.com/yiyulong/yby_mp#readme",
+  "dependencies": {
+    "@vant/weapp": "^1.4.4"
+  }
+}

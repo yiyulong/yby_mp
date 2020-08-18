@@ -1,0 +1,6 @@
+<template name="titleGroup">
+  <view class="titleGroup">
+    <view class="title">{{ title }}</view>
+    <view class="subTitle" wx:if="{{ subTitle }}">{{ subTitle }}</view>
+  </view>
+</template>

@@ -1,0 +1,2 @@
+<!--webPage.wxml-->
+<web-view wx:if="{{ ios }}" src="{{ url }}" />
