@@ -1,1 +1,91 @@
-/**index.wxss**/
+/**category.wxss**/
+page {
+  height: 100%;
+}
+.category-page {
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+}
+
+.sidebar-container {
+  width: 210rpx;
+}
+.tab-bar-scrollview {
+  height: 100%;
+}
+.bar-content {
+  padding-right: 20rpx;
+}
+.bar-content-item {
+  background: #f1f1f1;
+  color: var(--textColor);
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20rpx;
+  margin-bottom: 4rpx;
+}
+.bar-content-item text {
+  display: inline-block;
+  font-size: 26rpx;
+  line-height: 32rpx;
+  text-align: center;
+}
+.bar-content-item.active {
+  background: #ffff;
+  color: var(--activeColor);
+}
+
+.category-container {
+  flex: 1;
+}
+.tab-content-scrollview {
+  height: 100%;
+}
+.main-content {
+  padding-right: 20rpx;
+}
+.main-content-item {
+  padding-bottom: 20rpx;
+}
+.category-item {
+  background: #f4f4f4;
+  margin-bottom: 10rpx;
+}
+.category-item .img-content {
+  padding-top: 130%;
+  margin-bottom: 20rpx;
+  position: relative;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+.category-item .img-content image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.category-item .title, .category-item .subTitle {
+  color: var(--sub-textColor);
+  line-height: 40rpx;
+  text-align: center;
+}
+.category-item.active .title, .category-item.active .subTitle {
+  color: var(--activeColor);
+}
+.category-item .title {
+  font-size: 24rpx;
+  font-weight: bold;
+}
+.category-item .subTitle {
+  font-size: 22rpx;
+  text-decoration: underline;
+  padding-bottom: 20rpx;
+}
+.category-item .subTitle text {
+  display: inline-block;
+  border-bottom: 1px solid currentColor;
+}
