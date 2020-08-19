@@ -1,62 +1,229 @@
-//login index.js
-//获取应用实例
-const app = getApp()
-import { login } from '../../ajax/user'
+// pages/login/index.js
+const app = getApp();
+import config from '../../config.js';
 
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    userName: '',
-    password: '',
-    focus: false,
-    logging: false,
-    version: '' // 当前小程序线上版本号
+    version: '',
+    isLogin: false,
+    // isFirst: false,
+    userName: {
+      placeholder: '请输入用户名',
+      value: '',
+    },
+    password: {
+      placeholder: '请输入密码',
+      value: '',
+    },
+    // oldPassword: {
+    //   placeholder: '请输入原密码',
+    //   value: ''
+    // },
+    // newPassword: {
+    //   placeholder: '请输入新密码',
+    //   value: ''
+    // },
+    // confirmNewPassword: {
+    //   placeholder: '再次输入新密码',
+    //   value: ''
+    // }
   },
-  onLoad () {
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
     const accountInfo = wx.getAccountInfoSync()
     this.setData({
       version: accountInfo.miniProgram.version
     })
+    // console.log(options)
+    // if (options.page && options.page === 'first') {
+    //   this.setData({
+    //     isFirst: options.page
+    //   });
+    // }
+    // if (app.isLogin()) {
+    //   this.setData({
+    //     isLogin: true
+    //   });
+    //   wx.setNavigationBarTitle({
+    //     title: '退出登录页',
+    //   })
+    // } else {
+    //   wx.setNavigationBarTitle({
+    //     title: '登录页',
+    //   })
+    // }
   },
-  // 点击登陆按钮
-  async _login ({ detail: { value } }) {
-    this.setData({ logging: true })
-    const { userName, password } = value ?? this.data
-    await this._verifyInput(userName, password)
-    login({
-      username: userName,
-      password: password
-    }).then(res => {
-      wx.setStorageSync('username', res.username);
-      wx.setStorageSync('uid', res.uid);
-      wx.setStorageSync('sessionKey', res.sessionToken);
-      wx.setStorageSync('productMode', res.productMode);
-      wx.setStorageSync('orderListHeader', res.orderListHeader) // 订单头部tab
-      wx.setStorageSync('role', res.role) // 判断用户身份
-
-      wx.switchTab({
-        url: '/pages/index/index'
-      })
-    }).catch(err => {
-      this.setData({ logging: false })
+  onUnload () {
+    app.globalData.at_login_page = false
+  },
+  // handleBtn() {
+  //   if (this.data.isLogin) {
+  //     this.logout();
+  //   } else {
+  //     this.login();
+  //   }
+  // },
+  /* input输入事件 */
+  handleChange (e) {
+    const key = `${e.target.dataset.type}.value`
+    this.setData({
+      [key]: e.detail
     })
   },
-  // 密码输入框自动聚焦
-  _nextInputActive () {
-    this.setData({ focus: true })
-  },
-  // 判断输入的用户名或密码是否为空
-  _verifyInput (...val) {
-    return new Promise((resolve, reject) => {
-      if (val.some(item => item === '')) {
-        wx.showToast({
-          title: '请输入用户名或密码',
-          icon: 'none'
-        })
-        // 关闭登陆按钮状态效果
-        this.setData({ logging: false })
-        reject()
+  /* 确更改密码 */
+  // changePassword () {
+  //   if (this.data.newPassword.value !== this.data.confirmNewPassword.value) return
+  //   const data = {
+  //     url: config.changePassword,
+  //     params: {
+  //       oldPassword: this.data.oldPassword.value,
+  //       newPassword: this.data.newPassword.value,
+  //       confirmNewPassword: this.data.confirmNewPassword.value
+  //     }
+  //   }
+  //   console.log(data)
+  //   app.nPost(data).then(res => {
+  //     console.log(res)
+  //     wx.showModal({
+  //       title: '提示',
+  //       content: '修改成功请重新登陆',
+  //       showCancel: false,
+  //       success: (res) => {
+  //         console.log(res)
+  //         if (res.confirm) {
+  //           console.log('用户点击确定')
+  //           this.logout()
+  //         }
+  //       }
+  //     })
+  //   })
+  // },
+  /**
+   * 登录
+   */
+  login() {
+    let username = this.data.userName.value;
+    let password = this.data.password.value;
+    if (username && password) {
+      var data = {
+        url: config.login,
+        params: {
+          username: username,
+          password: password
+        }
       }
-      resolve()
-    })
-  }
+      app.nPost(data).then(res => {
+        app.showMsg("登录成功");
+        if (res.data) {
+          app.saveValue('username', res.data.username);
+          app.saveValue('uid', res.data.uid);
+          app.saveValue('sessionKey', res.data.sessionToken);
+          app.saveValue('productMode', res.data.productMode);
+          app.saveValue('orderListHeader', res.data.orderListHeader) // 订单头部tab
+          app.saveValue('role', res.data.role) // 判断用户身份
+          // if (this.data.isFirst) {
+            // wx.switchTab({
+            //   url: '/pages/index/index',
+            // })
+          // }
+          /* if (res.data.role === 'BU') {
+            const tabList = [
+              {
+                "pagePath": "/pages/index/index",
+                "iconPath": "/common/resource/home.png",
+                "selectedIconPath": "/common/resource/home-selected.png",
+                "text": "首页"
+              },
+              {
+                "pagePath": "/pages/heroOrderList/index",
+                "iconPath": "/common/resource/hero.png",
+                "selectedIconPath": "/common/resource/hero-selected.png",
+                "text": "全国排行榜"
+              },
+              {
+                "pagePath": "/pages/cart/index",
+                "iconPath": "/common/resource/cart.png",
+                "selectedIconPath": "/common/resource/cart-selected.png",
+                "text": "购物车"
+              },
+              {
+                "pagePath": "/pages/account/index",
+                "iconPath": "/common/resource/account.png",
+                "selectedIconPath": "/common/resource/account-selected.png",
+                "text": "我的"
+              }
+            ]
+            app.saveValue('tabList', tabList)
+          } else if (res.data.role === 'AU' || res.data.role === 'SUM') {
+            const tabList = [
+              {
+                "pagePath": "/pages/index/index",
+                "iconPath": "/common/resource/home.png",
+                "selectedIconPath": "/common/resource/home-selected.png",
+                "text": "首页"
+              },
+              {
+                "pagePath": "/pages/heroOrderList/index",
+                "iconPath": "/common/resource/hero.png",
+                "selectedIconPath": "/common/resource/hero-selected.png",
+                "text": "全国排行榜"
+              },
+              {
+                "pagePath": "/pages/reviewOrder/index",
+                "iconPath": "/common/resource/review.png",
+                "selectedIconPath": "/common/resource/review-selected.png",
+                "text": "审核订单"
+              },
+              {
+                "pagePath": "/pages/account/index",
+                "iconPath": "/common/resource/account.png",
+                "selectedIconPath": "/common/resource/account-selected.png",
+                "text": "我的"
+              }
+            ]
+            app.saveValue('tabList', tabList)
+          } */
+        }
+        const pages = getCurrentPages()
+        if (pages.length > 1) {
+          wx.navigateBack()
+        } else {
+          wx.switchTab({
+            url: '/pages/index/index'
+          })
+        }
+      }, res => {
+        // console.error(res);
+        app.showMsg(res.message || "登录失败")
+      });
+    } else {
+      app.showMsg("请输入用户名或密码！");
+    }
+  },
+  /**
+   * 退出
+   */
+  // logout() {
+  //     var data = {
+  //       url: config.logout,
+  //       params: {}
+  //     }
+  //     app.nGet(data).then(res => {
+  //       app.showMsg("退出成功");
+  //       app.clearValue();
+  //       // wx.navigateBack();
+  //       wx.reLaunch({
+  //         url: '/pages/login/index',
+  //       })
+  //     }, res => {
+  //       // console.error(res);
+  //     });
+  //   }
 })

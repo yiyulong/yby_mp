@@ -1,8 +1,0 @@
-<!--pdt-item.wxml-->
-<view class="pdt-item custom-class" data-id="{{ pdt.id }}">
-  <view class="img-content">
-    <image mode="aspectFill" src="{{ pdt.image }}" />
-  </view>
-  <view class="title">{{ pdt.name }}</view>
-  <view class="subTitle">{{ pdt.price }}</view>
-</view>

@@ -1,0 +1,36 @@
+<view class='contents {{showSelectView1||showSelectView2 || showSelectView3 || showSelectView4? "fix":"" }}'>
+  <select_mask id="popup" showP="{{showP}}" showNum="{{showNum}}" showTime="{{showTime}}" showText="{{sortText}}" bind:selectActive="selectActive" bind:searchDone="searchDone">
+      <!-- 全国订量 -->
+    <view class='sortView' wx:if="{{showSelectView3}}">
+      <view class='text' bindtap='sortAction1' data-param="0">全国订量</view>
+      <view class='text' bindtap='sortAction1' data-param="1">我的订量</view>
+    </view>
+    <!-- 时间 -->
+    <view class='sortView' wx:if="{{showSelectView4}}">
+      <view class='text' bindtap='sortAction2' data-param="0">不限</view>
+      <view class="text" bindtap='sortAction2' data-param="1">本周</view>
+      <view class='text' bindtap='sortAction2' data-param="2">本月</view>
+      <view class='text' bindtap='sortAction2' data-param="3">本季度</view>
+    </view>
+    <view class='sortView' wx:if="{{showSelectView1}}">
+      <view class='text' bindtap='sortAction' data-param="0">默认排序</view>
+      <view class='text' bindtap='sortAction' data-param="1">订量从高到低</view>
+      <view class='text' bindtap='sortAction' data-param="2">订量从低到高</view>
+      <view class='text' bindtap='sortAction' data-param="3">金额从高到低</view>
+      <view class='text' bindtap='sortAction' data-param="4">金额从低到高</view>
+    </view>
+    <view wx:if="{{showSelectView2}}">
+      <select_filter datas="{{attrsList}}" bind:cancel="cancel" bind:selectFilter="selectFilter" from="hero"></select_filter>
+    </view>
+  </select_mask>
+
+  <view>
+    <block wx:for="{{ordersData.list}}" wx:for-index="idx" wx:for-item="order" wx:key="{{idx}}">
+      <prod-list-cell shopData="{{order}}" showType="{{showType}}" show="{{true}}"></prod-list-cell>
+    </block>
+  </view>
+  <my-load-more load-done="{{loadDone}}" text="{{title}}"></my-load-more>
+  <!-- <zan-loadmore type="loading" wx:if="{{!loadDone}}"></zan-loadmore> -->
+  <!-- <zan-loadmore type="text" text="{{title}}" wx:elif="{{title}}"></zan-loadmore> -->
+  <!-- <zan-loadmore type="text" wx:elif="{{newLoadMore.title}}" text="{{newLoadMore.title}}"></zan-loadmore> -->
+</view>

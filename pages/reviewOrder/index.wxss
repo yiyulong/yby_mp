@@ -1,0 +1,68 @@
+Page {
+  box-sizing: border-box;
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-top: 160rpx;
+  background-color: #f7f7f7;
+}
+.tabContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 3;
+}
+.listItem {
+  padding: 5px 15px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+.listItem .radio {
+  margin-right: 15px;
+}
+.listItem .pdtcell {
+  flex: 1;
+}
+
+.summary {
+  position: fixed;
+  top: 100rpx;
+  left: 0;
+  right: 0;
+  height: 60rpx;
+  font-size: 14px;
+  background: #fff;
+  padding: 0 40rpx;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 3;
+}
+
+.ctrlContainer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.ctrlContainer .ctrlBtn {
+  padding-left: 20px;
+  padding-right: 20px;
+  position: absolute;
+  bottom: calc(30px + constant(safe-area-inset-bottom));
+  bottom: calc(30px + env(safe-area-inset-bottom));
+  width: 100px;
+}
+.ctrlContainer .ctrlBtn.rejectBtn {
+  left: 60px;
+}
+.ctrlContainer .ctrlBtn.passBtn {
+  right: 60px;
+}
+.ctrlContainer .ctrlBtn.unsubmitBtn {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}

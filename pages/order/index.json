@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "order-cell": "/components/orderCell/orderCell",
+    "zan-loadmore": "/common/lib/zanUI/loadmore/index",
+    "my-tabs": "/components/my-tabs/index"
+  }
+}

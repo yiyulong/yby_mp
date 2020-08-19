@@ -1,26 +1,48 @@
-/**login index.wxss**/
-page {
-  text-align: center;
-  padding: 0 80rpx;
+/* pages/login/index.wxss */
+
+.login-page {
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: 40rpx;
 }
 
-/* 品牌名称 */
-.brand-name {
-  font-size: 40rpx;
-  font-weight: bold;
-  line-height: 40rpx;
-}
-/* 封面 */
 .cover {
-  margin-top: 40rpx;
-  padding: 0 30rpx;
+  text-align: center;
 }
 .cover image {
-  max-width: 100%;
-  min-height: 50vh;
+  vertical-align: middle;
+}
+.cover .logo {
+  margin-bottom: 30rpx;
+}
+.cover .logo image {
+  width: 200rpx;
+  height: 100rpx;
+}
+.cover .bg {
+  margin-bottom: 50rpx;
+  background: #fff no-repeat center;
+  background-image: linear-gradient(to right, #f6efb4, #f6efb4);
+  background-size: 100% 360rpx;
+}
+.cover .bg image {
+  width: 100%;
+  height: 580rpx;
 }
 
-/* 登陆按钮 */
-.login-btn {
-  margin-top: 20rpx;
+.field-content > view, .rset-psw > view {
+  overflow: hidden;
+  padding-bottom: 1px;
+}
+.btn {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  margin: 30rpx auto;
+  box-sizing: border-box;
+}
+.btn button {
+  background: #000;
+  color: #fff;
 }

@@ -1,7 +1,7 @@
 Component({
   externalClasses: ['custom-class', 'tab-class', 'tab-active-class'],
   properties: {
-    list: Array,  // [{label, value}]
+    tabList: Array,  // [{label, value}]
     defaultIndex: {
       type: Number,
       value: 0,
@@ -22,7 +22,7 @@ Component({
     },
     trigger (index) {
       this.setData({ index: index })
-      this.triggerEvent('change', { index: index, ...this.properties.list[index] })
+      this.triggerEvent('change', { index: index, ...this.properties.tabList[index] })
     }
   }
 })

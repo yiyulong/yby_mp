@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "排行榜",
+  "usingComponents": {
+    "prod-list-cell": "/components/prodListCell/prodListCell",
+    "select_mask": "/components/select_mask/select_mask",
+    "select_filter": "/components/select_filter/index",
+    "my-load-more": "/components/my-load-more/index"
+  }
+}

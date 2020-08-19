@@ -1,0 +1,17 @@
+{
+  "component": true,
+  "usingComponents": {
+    "zan-popup": "/common/lib/zanUI/popup/index",
+    "zan-radio": "/common/lib/zanUI/radio/index",
+    "van-skeleton": "vant-weapp/skeleton/index",
+    "van-tabs": "vant-weapp/tabs/index",
+    "van-tab": "vant-weapp/tab/index",
+    "van-cell": "vant-weapp/cell/index",
+    "van-stepper": "vant-weapp/stepper/index",
+    "van-button": "vant-weapp/button/index",
+    "van-overlay": "vant-weapp/overlay/index",
+    "van-dialog": "vant-weapp/dialog/index",
+    "van-radio": "vant-weapp/radio/index",
+    "van-radio-group": "vant-weapp/radio-group/index"
+  }
+}

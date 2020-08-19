@@ -1,25 +1,14 @@
 //index.js
 //获取应用实例
-const app = getApp()
-import {
-  getProductCarousel, // 获取幻灯片列表
-  getB2bOrderBatchInfo, // 获取时装系列
-  getB2bChoicenessAttributeInfo, // 获取精选分类
-  getB2bChoicenessProductInfo, // 获取精选商品信息
-  getB2bPdfProfileInfo // 获取PDF信息
-} from '../../ajax/product'
+const app = getApp();
+import config from '../../config.js';
+var WxParse = require('../../common/lib/wxParse/wxParse.js');
 
 
 Page({
   data: {
     selectedId: 'new',
     carouselList: [], // 幻灯片列表
-    orderBatchInfo: {}, // 时装系列
-    choicenessAttributeInfo: {}, // 精选分类
-    choicenessAttributeInfo_main: {}, // 精选分类主分类
-    choicenessAttributeInfo_rest: {}, // 精选分类剩余分类
-    choicenessProductInfo: {}, // 精选商品信息
-    pdfProfileInfo: [], // pdf信息
     recommendInfo: { // 今日新品 推荐商品列表信息
       page: 1,
       size: 30,
@@ -57,6 +46,22 @@ Page({
     ]
   },
 
+  onLoad: function() {
+    // this.getCarouselList();
+    // this.getCategory();
+    // this.getPdtList({})
+    // this.getFilterList()
+    // this.getAccountInfo();
+    // this.getLayout();
+    // this.getPdtList({
+    //   recommend: true
+    // });
+    /* this.getCarouselList();
+    this.getCategory();
+    this.getPdtList({ recommend: true })
+    this.getAccountInfo();
+    this.getLayout(); */
+  },
 
   onHide: function() {
     wx.removeStorage({
@@ -64,46 +69,23 @@ Page({
     })
   },
 
-  onShow: async function() {
-    // 轮播图
-    getProductCarousel().then(res => {
-      this.setData({
-        carouselList: res.list,
+  onShow: function() {
+    /* if (app.isLogin() || typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        tabList: app.getValue('tabList'),
+        selected: 0
       })
-    })
-    // 时装系列
-    getB2bOrderBatchInfo().then(res => {
-      this.setData({
-        orderBatchInfo: res
-      })
-    })
-    // 精选分类
-    getB2bChoicenessAttributeInfo().then(res => {
-      const { resultList, subTitle, title, type } = res
-      this.setData({
-        choicenessAttributeInfo: { subTitle, title, type },
-        choicenessAttributeInfo_main: resultList.shift(),
-        choicenessAttributeInfo_rest: resultList
-      })
-    })
-    // 获取精选商品信息
-    getB2bChoicenessProductInfo().then(res => {
-      this.setData({
-        choicenessProductInfo: res
-      })
-    })
-    // 获取pdf信息
-    getB2bPdfProfileInfo().then(res => {
-      this.setData({
-        pdfProfileInfo: res.resultList
-      })
-    })
-    // this._getCategory()
-    // this.data.active === 0 ? this.getPdtList({ recommend: true }) : this.getPdtList({})
-    // this.getAccountInfo()
-    // this.getLayout()
+    } */
+    // this.setData({
+    //   active: 0
+    // });
+    this.getCarouselList();
+    this.getCategory();
+    this.data.active === 0 ? this.getPdtList({ recommend: true }) : this.getPdtList({})
+    this.getAccountInfo();
+    this.getLayout();
   },
-  _tabChange (e) {
+  tabChange (e) {
     const query = wx.createSelectorQuery(),
       index = this.data.active  // 获取切换前的tab下标
     query.selectViewport().scrollOffset(res => {
@@ -112,44 +94,17 @@ Page({
       this.setData({[key]: res.scrollTop})  // 保存切换前页面滚动高度
     }).exec()
     let active = e.detail.index
-    this.setData({active})
+    this.setData({active});
     wx.pageScrollTo({ // 跳转到之前保留的滚动位置
       scrollTop: this.data.tabList[active].scrollTop,
       duration: 0
     })
     if (active === 1 && this.data.allInfo.list.length === 0) {
-      this._getCategory()
-      this.getPdtList({})
+      this.getCategory();
+      this.getPdtList({});
     } else if (active === 2 && this.data.attrsList.length === 0) {
-      this.getFilterList()
+      this.getFilterList();
     }
-  },
-  _jumpUrl(e) {
-    // console.log(e)
-    let item = e.currentTarget.dataset.item
-    if (item?.target && item?.type === 'href') {
-      wx.navigateTo({
-        url: `/pages/webview/index?url=${item.target}`
-      })
-    } else if (item?.target && item?.type === 'pdt') {
-      wx.navigateTo({
-        url: `/pages/pdtInfo/index?productId=${item.target}`
-
-      })
-    } else if (item?.target && item?.type === 'filter') {
-      let target = [item.target]
-      wx.navigateTo({
-        url: `/pages/pdtList/index?attrIdList=${target}`
-      })
-    }
-  },
-  _jumpPdf ({ currentTarget: { dataset: { url } } }) {
-    wx.navigateTo({
-      url: '/subPages/other/webPage/index',
-      success (res) {
-        res.eventChannel.emit('acceptDataFromOpenerPage_index', { url })
-      }
-    })
   },
   /**
    * tab切换
@@ -159,17 +114,35 @@ Page({
     let active = e.detail.index
     this.setData({
       active: active
-    })
+    });
     if (active === 1 && this.data.allInfo.list.length === 0) {
-      this._getCategory()
-      this.getPdtList({})
+      this.getCategory();
+      this.getPdtList({});
     } else if (active === 2 && this.data.attrsList.length === 0) {      
-      this.getFilterList()
+      this.getFilterList();
     }
+  },
+  /**
+   * 获取首页幻灯片
+   */
+  getCarouselList() {
+    var data = {
+      url: config.indexCarouselQuery,
+      params: {}
+    }
+    app.nGet(data).then(data => {
+      if (data.data && data.data.list) {
+        this.setData({
+          carouselList: data.data.list,
+        });
+      }
+    }, res => {
+      // console.error(res);
+    });
   },
 /* 获取用户信息 */
   getAccountInfo() {
-    let that = this
+    let that = this;
     var data = {
       url: config.getAccountInfo,
       params: {}
@@ -178,11 +151,11 @@ Page({
       // console.log(data)
       this.setData({
         accountInfo: data.data
-      })
-      // let webContent = data.data ? data.data : ''
-      // WxParse.wxParse('webContent', 'html', webContent, that, 0)
+      });
+      let webContent = data.data ? data.data : '';
+      WxParse.wxParse('webContent', 'html', webContent, that, 0);
       // console.log(data.data,22)
-    }, res => {})
+    }, res => {});
   },
 
   getLayout() {
@@ -191,19 +164,19 @@ Page({
       params: {}
     }
     app.nGet(data).then(data => {
-      // console.log(data)
+      // console.log(data);
       this.setData({
         home_new: data.data.new,
         home_top: data.data.top,
         home_title: data.data.indexTtile
-      })
-    }, res => {})
+      });
+    }, res => {});
   },
 
   homeShowModel(e) {
     wx.navigateTo({
       url: `/pages/pdtList/index?type=${e.currentTarget.dataset.type}`,
-    })
+    });
 
   },
   // 跳转到预定商品页面
@@ -296,7 +269,7 @@ Page({
   /**
    * 获取商品分类列表
    */
-  _getCategory() {
+  getCategory() {
     var data = {
       url: config.indexCategoryQuery,
       params: {}
@@ -306,12 +279,12 @@ Page({
       if (data.data) {
         this.setData({
           categoryList: data.data,
-        })
+        });
 
       }
     }, res => {
-      // console.error(res)
-    })
+      // console.error(res);
+    });
   },
   /**
    * 获取筛选列表
@@ -325,23 +298,23 @@ Page({
       if (data.data) {
         this.setData({
           attrsList: data.data,
-        })
+        });
       }
     }, res => {
-      // console.error(res)
-    })
+      // console.error(res);
+    });
   },
   searchChange(e) {
     this.setData({
       inputValue: e.detail.value
-    })
+    });
   },
   searchDone(e) {
-    let search = e.detail.value
+    let search = e.detail.value;
     if (search) {
       wx.navigateTo({
         url: `/pages/pdtList/index?search=${search}`,
-      })
+      });
     }
   },
   jumpToSearch() {
@@ -353,8 +326,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-    wx.showNavigationBarLoading()
-    wx.hideNavigationBarLoading()
+    wx.showNavigationBarLoading();
+    wx.hideNavigationBarLoading();
   },
 
   /**

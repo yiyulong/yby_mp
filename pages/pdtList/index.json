@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "one-cell-two-pdt": "/components/oneCellTwoPdt/index",
+    "my-load-more": "/components/my-load-more/index"
+  }
+}
