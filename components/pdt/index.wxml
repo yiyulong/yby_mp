@@ -1,0 +1,13 @@
+<!--components/pdt/index.wxml-->
+<view class="pdt" bindtap="_jumpPdt">
+  <view class="content">
+    <image src="{{info.image}}" mode="aspectFill" lazy-load></image>
+  </view>
+  <view class="info">
+    <view class="prodCode">{{info.productName}}</view>
+    <view class="prodName">{{info[showMode]}}</view>
+    <view class="prodPrice">
+      <text class="priceDiscount">¥ {{info.price}}</text>
+    </view>
+  </view>
+</view>

@@ -1,4 +1,5 @@
-const baseUrl = 'http://120.24.29.201:8080/trendfinder'
+// const baseUrl = 'http://120.24.29.201:8080/trendfinder'
+const baseUrl = 'https://yesbyyesir.dlt-world.com'
 function getCommonHeader () {
 
   let header = {

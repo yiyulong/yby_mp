@@ -1,0 +1,8 @@
+/* components/pdt-list/index.wxss */
+.pdt-list {
+  overflow-x: hidden;
+}
+
+.pdt-list-item {
+  padding-bottom: 20rpx;
+}

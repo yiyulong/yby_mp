@@ -1,0 +1,56 @@
+<!--category.wxml-->
+<view class="category-page">
+  <view class="sidebar-container">
+    <scroll-view
+      scroll-y
+      class="tab-bar-scrollview"
+      scroll-into-view="bar-content-item_{{currentView}}"
+    >
+      <view class="bar-content">
+        <block wx:for="{{ tabs }}" wx:key="index">
+          <view
+            id="bar-content-item_{{ index }}"
+            class="bar-content-item {{ activeKey === index ? 'active' : '' }}"
+            data-index="{{ index }}"
+            bind:tap="_onChange"
+          >
+            <text>{{ item.categoryName }}</text>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="category-container">
+    <scroll-view
+      scroll-y
+      scroll-with-animation
+      class="tab-content-scrollview"
+      scroll-top="{{ contentScrollTop }}"
+      bindscroll="_contentScroll"
+    >
+      <view class="main-content">
+        <block wx:for="{{ result }}" wx:key="index">
+          <view class="main-content-item">
+            <van-row gutter="5">
+              <block wx:for="{{ item }}" wx:for-item="category" wx:key="id">
+                <van-col span="12">
+                  <view
+                    class="category-item"
+                    data-id="{{ category.id }}"
+                    bind:tap="_jumpPdt"
+                  >
+                    <view class="img-content">
+                      <image lazy-load mode="aspectFill" src="{{ category.pictureUrl }}" />
+                    </view>
+                    <view class="title">{{ category.subCategoryName }}</view>
+                    <view class="subTitle"><text>{{ category.subCategoryButtonText }}</text></view>
+                  </view>
+                </van-col>
+              </block>
+            </van-row>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+</view>

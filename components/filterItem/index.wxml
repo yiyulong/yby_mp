@@ -1,12 +1,12 @@
 <!--components/filterItem/index.wxml-->
 <view>
-  <zan-row wx:for="{{datas}}" wx:key="{{item.attrListId}}">
+  <zan-row wx:for="{{datas}}" wx:key="attrListId">
   <view class="filter-title">{{item.attrListName}}</view>
   <view 
     class="filter-item" 
     wx:for="{{item.attrs}}"
      wx:for-item="attr"
-     wx:key="{{attr.attrId}}"
+     wx:key="attrId"
      bindtap="handlePdtList"  
      data-item="{{attr}}"
      >

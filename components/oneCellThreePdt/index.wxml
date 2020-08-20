@@ -1,6 +1,6 @@
 <!--components/oneCellThreePdt/index.wxml-->
 <van-row custom-class="my-row-class">
-  <van-col span="8" custom-class="three-pdt-item" wx:for="{{items}}" wx:key="{{item.id}}">
+  <van-col span="8" custom-class="three-pdt-item" wx:for="{{items}}" wx:key="id">
     <view class="box" bindtap="jumpUrl" data-item="{{item}}">
       <view class="content">
         <image src="{{item.image}}" mode="aspectFill" lazy-load="true"></image>

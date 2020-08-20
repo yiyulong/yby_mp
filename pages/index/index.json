@@ -1,13 +1,13 @@
 {
   "usingComponents": {
-    "zan-tab": "/common/lib/zanUI/tab/index",
-    "zan-search": "/common/lib/zanUI/search/index",
-    "carousel": "/components/carousel/carousel",
     "one-cell-two-pdt": "/components/oneCellTwoPdt/index",
-    "one-cell-three-pdt": "/components/oneCellThreePdt/index",
     "one-cell-four-icon": "/components/oneCellFourIcon/index",
     "filter-item": "/components/filterItem/index",
-    "my-tabs": "/components/my-tabs/index",
-    "my-load-more": "/components/my-load-more/index"
+    "my-load-more": "/components/my-load-more/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index",
+    "van-search": "@vant/weapp/search/index",
+    "pdt-item": "/components/pdt-item/index",
+    "pdt-list": "/components/pdt-list/index"
   }
 }

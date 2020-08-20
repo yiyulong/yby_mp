@@ -1,24 +1,24 @@
 {
-  "name": "immi_mp",
+  "name": "yby_mp",
   "version": "1.0.0",
-  "description": "immi订货小程序",
+  "description": "YES BY YESIR MINIMPRROGRAM",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Zen-qiang/IMMI_mp.git"
+    "url": "git+https://github.com/yiyulong/yby_mp.git"
   },
-  "author": "yyl",
+  "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Zen-qiang/IMMI_mp/issues"
+    "url": "https://github.com/yiyulong/yby_mp/issues"
   },
-  "homepage": "https://github.com/Zen-qiang/IMMI_mp#readme",
+  "homepage": "https://github.com/yiyulong/yby_mp#readme",
   "dependencies": {
+    "@vant/weapp": "^1.4.4",
     "miniprogram-computed": "^2.1.1",
-    "vant-weapp": "^1.0.0-beta.4",
-    "weui-miniprogram": "^0.2.0"
+    "vant-weapp": "^1.0.0-beta.4"
   }
 }

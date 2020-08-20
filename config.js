@@ -2,7 +2,8 @@
  * 接口配置文件
  */
 
-const host = "https://immi.dingliantech.com";
+ const host = "https://yesbyyesir.dlt-world.com"
+// const host = "https://immi.dingliantech.com";
 // const host = "http://192.168.3.16:8080/trendfinder";
 // const host = "http://172.16.0.176:8082";
 // const host = "http://192.168.8.8:55661/immi";

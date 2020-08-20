@@ -1,0 +1,8 @@
+<!--pdt-item.wxml-->
+<view class="pdt-item custom-class" data-id="{{ pdt.id }}" bind:tap="_jumpPdt">
+  <view class="img-content">
+    <image lazy-load mode="aspectFill" src="{{ pdt.image }}" />
+  </view>
+  <view class="title">{{ pdt.name }}</view>
+  <view class="subTitle">{{ pdt.price }}</view>
+</view>

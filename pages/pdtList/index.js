@@ -2,23 +2,23 @@
 const app = getApp();
 import config from '../../config.js';
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    type: '',
-    search: '',
-    attrIdList: [],
-    categoryId: '',
-    page: 1,
-    size: 20,
-    total: 0,
+    _type: '',
+    _search: '',
+    _attrIdList: [],
+    _categoryId: '',
+    _page: 1,
+    _size: 20,
     list: [],
     loadMore: { // 加载信息
       title: '正在加载',
       loadDone: false
     },
+    _searchTypeId: '',
+    _searchType: ''
   },
 
   /**
@@ -26,13 +26,15 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      type: options.type || '',
-      search: options.search || '',
-      attrIdList: options.attrIdList && options.attrIdList.split(',') || [],
-      categoryId: options?.categoryId ?? ''
+      _type: options.type || '',
+      _search: options.search || '',
+      _attrIdList: options.attrIdList && options.attrIdList.split(',') || [],
+      _categoryId: options?.categoryId ?? '',
+      _searchTypeId: options?.searchTypeId ?? '',
+      _searchType: options?.searchType ?? ''
     })
     let title = ''
-    switch (this.data.type) {
+    switch (this.data._type) {
       case '1':
         title = '当季新品'
         break
@@ -49,13 +51,12 @@ Page({
 
   getList () {
     let url = '',
-      type = '',
       params = {
-        page: this.data.page,
-        size: this.data.size,
-        categoryId: this.data.categoryId
+        page: this.data._page,
+        size: this.data._size,
+        categoryId: this.data._categoryId
       }
-    switch (this.data.type) {
+    switch (this.data._type) {
       case '1':
         url = config.timeGoods
         params = {
@@ -73,27 +74,30 @@ Page({
       case '3':
         url = config.indexNewPdtQuery
         params = {
-          search: this.data.search,
-          attrIdList: JSON.stringify(this.data.attrIdList),
+          search: this.data._search,
+          attrIdList: JSON.stringify(this.data._attrIdList),
           isReserve: true,
+          searchTypeId: this.data._searchTypeId,
+          searchType: this.data._searchType,
           ...params
         }
         break
       default:
         url = config.indexNewPdtQuery
         params = {
-          search: this.data.search,
-          attrIdList: JSON.stringify(this.data.attrIdList),
+          search: this.data._search,
+          attrIdList: JSON.stringify(this.data._attrIdList),
+          searchTypeId: this.data._searchTypeId,
+          searchType: this.data._searchType,
           ...params
         }
     }
 
     app.nGet({url, params}).then(({data}) => {
       if (data && data.list) {
-        const { total, list, page, pages } = data
-        if (this.data.page === 1) {
+        const { list, page, pages } = data
+        if (this.data._page === 1) {
           this.setData({
-            total,
             list,
             'loadMore.title': Number(page) >= Number(pages) || !list.length ? '暂无数据' : '正在加载',
             'loadMore.loadDone': Number(page) >= Number(pages) || !list.length
@@ -126,9 +130,7 @@ Page({
    */
   onReachBottom: function() {
     if (this.data.loadMore.loadDone) return
-    this.setData({
-      page: this.data.page + 1
-    })
+    this.data._page = this.data._page + 1
     this.getList()
   }
 })

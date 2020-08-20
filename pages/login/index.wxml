@@ -1,35 +1,44 @@
-<!--pages/login/index.wxml-->
-<view class="login-page">
-  <!-- 登陆 -->
-  <view>
-    <view class="cover">
-      <view class="logo">
-        <image src="../../common/resource/logo.jpg" mode="aspectFit"></image>
-      </view>
-      <view class="bg">
-        <image src="http://immi.dingliantech.com/resource/login/bg.jpg" mode="aspectFit"></image>
-      </view>
-    </view>
-    <view class="field-content">
-      <van-field placeholder="{{ userName.placeholder }}" value="{{ userName.value }}" bind:input="handleChange" data-type="userName" confirm-type="next"></van-field>
-      <van-field placeholder="{{ password.placeholder }}" value="{{ password.value }}" bind:input="handleChange" data-type="password" bind:confirm="login" password></van-field>
-    </view>
-  </view>
-  <!-- 修改密码 -->
-  <!-- <view wx:else class="rset-psw">
-    <view><van-field placeholder="{{ oldPassword.placeholder }}" value="{{ oldPassword.value }}" password bind:input="handleChange" data-type="oldPassword"></van-field></view>
-    <view><van-field placeholder="{{ newPassword.placeholder }}" value="{{ newPassword.value }}" password bind:input="handleChange" data-type="newPassword"></van-field></view>
-    <view><van-field placeholder="{{ confirmNewPassword.placeholder }}" value="{{ confirmNewPassword.value }}" password bind:change="handleChange" data-type="confirmNewPassword" error="{{newPassword.value !== confirmNewPassword.value}}"></van-field></view>
-    <view class="btn"><van-button size="large" bind:tap="changePassword" disabled="{{!oldPassword.value || !newPassword.value || !confirmNewPassword.value || newPassword.value !== confirmNewPassword.value}}">确认修改</van-button></view>
-  </view> -->
-  <!-- 登陆按钮 -->
-  <view class="btn">
-    <van-button size="large" bind:tap="login">登录</van-button>
-  </view>
-
+<!--login index.html-->
+<import src="/template/footer.wxml"></import>
+<view class="brand-name">YES BY YESIR</view>
+<view class="cover">
+  <image mode="heightFix" src="/assets/images/login_bg.png" />
 </view>
-<view class="weui-footer">
-  <view class="weui-footer__text">该系统仅供内部帐号使用</view>
-  <view class="weui-footer__text">Copyright © 2020 DinglianTech</view>
-  <view class="weui-footer__text">{{ version }}</view>
-</view>
+<form bindsubmit="_login">
+  <van-cell-group>
+    <van-field
+      border
+      clearable
+      clickable
+      confirm-hold
+      confirm-type="next"
+      name="userName"
+      model:value="{{ userName }}"
+      placeholder="请输入用户名"
+      bind:confirm="_nextInputActive"
+    />
+    <van-field
+      border
+      clearable
+      clickable
+      password
+      name="password"
+      model:value="{{ password }}"
+      focus="{{ focus }}"
+      placeholder="请输入密码"
+      bind:confirm="_login"
+      cursor-spacing="{{ 80 }}"
+    />
+  </van-cell-group>
+  <view class="login-btn">
+    <van-button
+      square
+      block
+      color="var(--black)"
+      form-type="submit"
+      loading="{{ logging }}"
+      loading-text="正在登录"
+    >登录</van-button>
+  </view>
+</form>
+<template is="footer" data="{{ version }}"></template>

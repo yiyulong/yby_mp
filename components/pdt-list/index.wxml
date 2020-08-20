@@ -1,0 +1,10 @@
+<!--components/oneCellThreePdt/index.wxml-->
+<view class="pdt-list">
+  <van-row gutter="{{ gutter }}">
+    <block wx:for="{{ list }}" wx:key="id">
+      <van-col span="{{ span }}" custom-class="pdt-list-item">
+        <pdt info="{{ item }}" show-mode="{{ showName }}" />
+      </van-col>
+    </block>
+  </van-row>
+</view>

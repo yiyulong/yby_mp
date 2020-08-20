@@ -44,18 +44,15 @@ Component({
       }
     },
     confirmFilter() {
-      let attrIdList = [];
+      const attrIdList = []
       for (let key in this.data.selectedFilter) {
-        attrIdList.push(key);
+        attrIdList.push(key)
       };
-      if (attrIdList.length === 0) {
-        return;
-      } else {
-        wx.setStorageSync('selectedFilterItem', JSON.stringify(this.data.selectedFilter));
-        wx.navigateTo({
-          url: `/pages/pdtList/index?attrIdList=${attrIdList}`,
-        })
-      }
+      if (attrIdList.length === 0) return
+      wx.setStorageSync('selectedFilterItem', JSON.stringify(this.data.selectedFilter));
+      wx.navigateTo({
+        url: `/pages/pdtList/index?attrIdList=${attrIdList}`
+      })
     }
   }
 })
