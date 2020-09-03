@@ -15,7 +15,8 @@ Component({
           showName: showtype || 'styleName'
         });
       }
-    }
+    },
+    isArrivalNotice: String
   },
 
   /**

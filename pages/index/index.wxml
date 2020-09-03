@@ -2,7 +2,6 @@
 <import src="/template/titleGroup.wxml" />
 <!-- tabbar -->
 <view class="index-tab van-hairline--top-bottom">
-  <!-- <tabs list="{{ tabList }}" bind:change="tabChange" /> -->
   <view class="my-tabs">
     <block wx:for="{{tabList}}" wx:key="index">
       <view
@@ -45,6 +44,7 @@
                   <van-col span="12">
                     <view
                       class="fashion-item {{ item.isArrivalNotice ? 'active': '' }}"
+                      data-is-arrival-notice="{{ item.isArrivalNotice }}"
                       data-type="{{ orderBatchInfo.type }}"
                       data-id="{{ item.id }}"
                       bind:tap="_jumpPdt"
@@ -120,7 +120,7 @@
                       bind:tap="_jumpPdt"
                     >
                       <image lazy-load mode="aspectFill" src="{{ swiperItem }}" class="carousel-image"/>
-                      <text class="moreDetail">点击查看更多</text>
+                      <text class="moreDetail" wx:if="{{ item.btnText }}">{{ item.btnText }}</text>
                     </swiper-item>
                   </block>
                 </swiper>
@@ -144,14 +144,20 @@
               </view>
               <view class="carousel-content">
                 <swiper
-                  class="carousel-swiper"
+                  class="carousel-swiper {{ index === choicenessProductInfo.resultList.length -1 ? 'last': '' }}"
                   indicator-dots
                   autoplay
                   circular>
                   <block wx:for="{{ item.pictureUrlList }}" wx:for-index="swiperIndex" wx:for-item="swiperItem" wx:key="swiperIndex">
-                    <swiper-item class="carousel-swiper-item" data-url="{{ item.pdfUrl }}" bind:tap="_jumpPdf">
-                      <image lazy-load mode="aspectFill" src="{{ swiperItem }}" class="carousel-image"/>
-                      <text class="moreDetail" wx:if="{{ item.btnText }}">点击查看更多</text>
+                    <swiper-item
+                      class="carousel-swiper-item"
+                      data-url="{{ item.pdfUrl }}"
+                      data-id="{{ item.id }}"
+                      data-exist-sub="{{ item.existSub }}"
+                      bind:tap="_jumpPdf"
+                    >
+                      <image lazy-load mode="widthFix" src="{{ swiperItem }}" class="carousel-image"/>
+                      <text class="moreDetail" wx:if="{{ item.btnText }}">{{ item.btnText }}</text>
                     </swiper-item>
                   </block>
                 </swiper>

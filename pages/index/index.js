@@ -85,27 +85,6 @@ Page({
 
     this.getCategory()
   },
-  // tabChange (e) {
-  //   const query = wx.createSelectorQuery(),
-  //     index = this.data.active  // 获取切换前的tab下标
-  //   query.selectViewport().scrollOffset(res => {
-  //     // console.log(res)
-  //     const key = `tabList[${index}].scrollTop`
-  //     this.setData({[key]: res.scrollTop})  // 保存切换前页面滚动高度
-  //   }).exec()
-  //   let active = e.detail.index
-  //   this.setData({active});
-  //   wx.pageScrollTo({ // 跳转到之前保留的滚动位置
-  //     scrollTop: this.data.tabList[active].scrollTop,
-  //     duration: 0
-  //   })
-  //   if (active === 1 && this.data.allInfo.list.length === 0) {
-  //     this.getCategory();
-  //     this.getPdtList({});
-  //   } else if (active === 2 && this.data.attrsList.length === 0) {
-  //     this.getFilterList();
-  //   }
-  // },
   _tabChange ({ currentTarget: { dataset: { index: tabIndex } } }) {
     if (this.data.tabIndex === tabIndex) return
     this.setData({ swiperIndex: tabIndex })
@@ -138,13 +117,22 @@ Page({
       })
     }
   },
-  _jumpPdt ({ currentTarget: { dataset: { id, type }}}) {
+  _jumpPdt ({ currentTarget: { dataset: { id, type, isArrivalNotice }}}) {
     // console.log(id, type)
+    const param = `searchTypeId=${id}&searchType=${type}`
+    let params = isArrivalNotice ? `${param}&isArrivalNotice=${isArrivalNotice}` : param
     wx.navigateTo({
-      url: `/pages/pdtList/index?searchTypeId=${id}&searchType=${type}`,
+      url: `/pages/pdtList/index?${params}`,
     })
   },
-  _jumpPdf ({ currentTarget: { dataset: { url } } }) {
+  _jumpPdf ({ currentTarget: { dataset } }) {
+    const { url, id, existSub } = dataset
+    if (existSub) {
+      wx.navigateTo({
+        url: `/subPages/other/pdfList/index?id=${id}`
+      })
+      return
+    }
     wx.navigateTo({
       url: '/subPages/other/webPage/index',
       success (res) {
@@ -240,15 +228,9 @@ Page({
       url: '/pages/searchPage/index',
     })
   },
-  // 页面相关事件处理函数--监听用户下拉动作
-  onPullDownRefresh: function() {
-    wx.showNavigationBarLoading();
-    wx.hideNavigationBarLoading();
-  },
 
   // 页面上拉触底事件的处理函数
   _loadMore () {
-    console.log('loadMore')
     if (this.data.allLoadMore.loadDone) return
     this.setData({
       'allInfo.page': Number(this.data.allInfo.page) + 1

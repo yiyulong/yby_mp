@@ -7,12 +7,13 @@
           <image src="{{item.image}}" mode="aspectFill"></image>
         </view>
         <view class="info">
-          <view class="prodCode">{{item.productName}}</view>
+          <view class="prodCode" wx:if="{{ !isArrivalNotice }}">{{item.productName}}</view>
           <view class="prodName">{{item[showName]}}</view>
           <view class="prodPrice">
             <!-- <text class="priceStandard">¥ {{item.priceStandard}}</text> -->
             <text class="priceDiscount">¥ {{item.price}}</text>
           </view>
+          <view class="prodDesc" wx:if="{{ isArrivalNotice }}">{{ item.description }}</view>
         </view>
       </view>
     </van-col>

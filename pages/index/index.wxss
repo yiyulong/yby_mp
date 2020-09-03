@@ -210,6 +210,9 @@ page {
 .pdf-container .carousel-content .carousel-swiper {
   height: 480rpx;
 }
+.pdf-container .carousel-content .carousel-swiper.last {
+  height: 740rpx;
+}
 .pdf-container .carousel-content .carousel-swiper .carousel-swiper-item {
   position: relative;
 }

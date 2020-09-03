@@ -1,6 +1,6 @@
 {
+  "disableScroll": true,
   "usingComponents": {
-    "one-cell-two-pdt": "/components/oneCellTwoPdt/index",
     "one-cell-four-icon": "/components/oneCellFourIcon/index",
     "filter-item": "/components/filterItem/index",
     "my-load-more": "/components/my-load-more/index",

@@ -4,5 +4,5 @@
     <image lazy-load mode="aspectFill" src="{{ pdt.image }}" />
   </view>
   <view class="title">{{ pdt.name }}</view>
-  <view class="subTitle">{{ pdt.price }}</view>
+  <view class="subTitle">¥{{ pdt.price }}</view>
 </view>

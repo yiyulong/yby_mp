@@ -18,20 +18,23 @@ Page({
       loadDone: false
     },
     _searchTypeId: '',
-    _searchType: ''
+    _searchType: '',
+    isArrivalNotice: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    // console.log(options)
+    this.data._type = options.type || ''
+    this.data._search = options.search || ''
+    this.data._attrIdList = options.attrIdList && options.attrIdList.split(',') || []
+    this.data._categoryId = options?.categoryId ?? ''
+    this.data._searchTypeId = options?.searchTypeId ?? ''
+    this.data._searchType = options?.searchType ?? ''
     this.setData({
-      _type: options.type || '',
-      _search: options.search || '',
-      _attrIdList: options.attrIdList && options.attrIdList.split(',') || [],
-      _categoryId: options?.categoryId ?? '',
-      _searchTypeId: options?.searchTypeId ?? '',
-      _searchType: options?.searchType ?? ''
+      isArrivalNotice: options?.isArrivalNotice || ''
     })
     let title = ''
     switch (this.data._type) {
@@ -105,7 +108,6 @@ Page({
         } else {
           let loadlist = [...this.data.list, ...list]
           this.setData({
-            total,
             list: loadlist,
             'loadMore.title': Number(page) >= Number(pages) || !list.length ? '暂无数据' : '正在加载',
             'loadMore.loadDone': Number(page) >= Number(pages) || !list.length
@@ -118,6 +120,7 @@ Page({
         })
       }
     }).catch(err => {
+      console.log(err)
       this.setData({
         'loadMore.title': '获取失败',
         'loadMore.loadDone': true

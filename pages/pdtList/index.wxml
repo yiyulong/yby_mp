@@ -1,5 +1,5 @@
 <!--pages/pdtList/index.wxml-->
 <view class="pdtList-page">
-    <one-cell-two-pdt items="{{list}}"></one-cell-two-pdt>
+    <one-cell-two-pdt items="{{list}}" is-arrival-notice="{{ isArrivalNotice }}"></one-cell-two-pdt>
     <my-load-more load-done="{{loadMore.loadDone}}" text="{{loadMore.title}}"></my-load-more>
 </view>

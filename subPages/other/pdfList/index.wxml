@@ -1,0 +1,19 @@
+<!--pdfList.wxml-->
+<import src="/template/titleGroup.wxml" />
+<block wx:for="{{ pdfList }}" wx:key="index">
+  <view class="pdf-container">
+    <view class="title-content">
+      <template is="titleGroup" data="{{ ...item }}" />
+    </view>
+    <view class="pdf-content">
+      <image
+        class="pdf-image"
+        lazy-load
+        mode="widthFix"
+        data-url="{{ item.pdfUrl }}"
+        src="{{ item.pictureUrl }}"
+        bind:tap="_jumpPdf"
+      />
+    </view>
+  </view>
+</block>

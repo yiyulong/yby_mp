@@ -1,0 +1,12 @@
+/* subPages/other/pdfList/index.wxss */
+.pdf-container {
+}
+.title-content {
+  padding: 40rpx 0;
+}
+.pdf-content {
+  margin-bottom: 40rpx;
+}
+.pdf-image {
+  width: 100%;
+}

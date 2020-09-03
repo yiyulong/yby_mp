@@ -4,4 +4,5 @@ module.exports.getB2bOrderBatchInfo = (data, config = {}) => getRequest('/b2b/ge
 module.exports.getB2bChoicenessAttributeInfo = (data, config = {}) => getRequest('/b2b/getB2bChoicenessAttributeInfo', data, config) // 获取精选品类信息
 module.exports.getB2bChoicenessProductInfo = (data, config = {}) => getRequest('/b2b/getB2bChoicenessProductInfo', data, config) // 获取精选商品信息
 module.exports.getB2bPdfProfileInfo = (data, config = {}) => getRequest('/b2b/getB2bPdfProfileInfo', data, config) // 获取PDF信息
+module.exports.getB2bSubPdfProfileInfo = (data, config = {}) => getRequest('/b2b/getB2bSubPdfProfileInfo', data, config) // 获取下级PDF信息
 module.exports.getB2bCategoryInfo = (data, config = {}) => getRequest('/b2b/getB2bCategoryInfo', data, config) // 获取类目信息

@@ -32,7 +32,8 @@
       "name": "other",
       "root": "subPages/other/",
       "pages": [
-        "webPage/index"
+        "webPage/index",
+        "pdfList/index"
       ]
     }
   ],
