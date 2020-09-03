@@ -23,7 +23,7 @@
           <view class="swiper-container">
             <swiper
               class="carousel-swiper"
-              indicator-dots
+              indicator-dots="{{ carouselList && carouselList.length > 1 }}"
               autoplay
               circular>
               <block wx:for="{{ carouselList }}" wx:key="id">
@@ -109,7 +109,7 @@
               <view class="carousel-content" wx:if="{{ item.pictureUrlList && item.pictureUrlList.length }}">
                 <swiper
                   class="carousel-swiper"
-                  indicator-dots
+                  indicator-dots="{{ item.pictureUrlList && item.pictureUrlList.length > 1 }}"
                   autoplay
                   circular>
                   <block wx:for="{{ item.pictureUrlList }}" wx:for-index="swiperIndex" wx:for-item="swiperItem" wx:key="swiperIndex">
@@ -145,7 +145,7 @@
               <view class="carousel-content">
                 <swiper
                   class="carousel-swiper {{ index === choicenessProductInfo.resultList.length -1 ? 'last': '' }}"
-                  indicator-dots
+                  indicator-dots="{{ item.pictureUrlList && item.pictureUrlList.length > 1 }}"
                   autoplay
                   circular>
                   <block wx:for="{{ item.pictureUrlList }}" wx:for-index="swiperIndex" wx:for-item="swiperItem" wx:key="swiperIndex">
