@@ -100,3 +100,6 @@ swiper-item {
   height: 50px;
   line-height: 50px;
 }
+.custom-class-popup {
+  overflow: hidden!important;
+}

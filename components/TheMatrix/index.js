@@ -150,8 +150,8 @@ Component({
             matrixTotal: matrixTotal,
             stock: data.data.stock
           });
-          this.data._matrix = matrix,
-          console.log(this.data.tabList, this.data.matrix, this.data.matrixPrice, this.data.matrixTotal)
+          this.data._matrix = matrix
+          // console.log(this.data.tabList, this.data.matrix, this.data.matrixPrice, this.data.matrixTotal)
         }
       }, res => {
         // console.error(res);

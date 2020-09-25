@@ -25,7 +25,7 @@
   </select_mask>
 
   <view>
-    <block wx:for="{{ordersData.list}}" wx:for-index="idx" wx:for-item="order" wx:key="{{idx}}">
+    <block wx:for="{{ordersData.list}}" wx:for-index="idx" wx:for-item="order" wx:key="idx">
       <prod-list-cell shopData="{{order}}" showType="{{showType}}" show="{{true}}"></prod-list-cell>
     </block>
   </view>

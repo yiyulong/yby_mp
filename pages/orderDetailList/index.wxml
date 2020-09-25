@@ -25,7 +25,7 @@
 </block> -->
  <!-- {{showType.orderType === 'returnOrder' ? 'marginTop' : ''}} -->
 <view class="order-conent">
-  <block wx:for="{{ordersData}}" wx:for-index="idx" wx:for-item="order" wx:key="{{idx}}">
+  <block wx:for="{{ordersData}}" wx:for-index="idx" wx:for-item="order" wx:key="idex">
     <prod-list-cell orderId="{{orderID}}" shopData="{{order}}" showType="{{showType}}" orderStatus="{{orderConfig.orderStatus}}"></prod-list-cell>
   </block>
 </view>

@@ -1,7 +1,8 @@
 /* pages/cart/index.wxss */
 Page {
   box-sizing: border-box;
-  padding-top: 200rpx;
+  /* padding-top: 200rpx; */
+  padding-top: 100rpx;
   padding-bottom: calc(100rpx + 48px + env(safe-area-inset-bottom));
 }
 .tabs {
@@ -9,7 +10,8 @@ Page {
   left:0;
   top:0;
   width:100%;
-  height:200rpx;
+  /* height:200rpx; */
+  height: 100rpx;
   z-index:1;
   background:#fff;
 }

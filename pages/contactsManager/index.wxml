@@ -1,6 +1,6 @@
 <view class='contents'>
 
-  <block wx:for="{{contactsData}}" wx:for-index="idx" wx:for-item="contact" wx:key="{{idx}}">
+  <block wx:for="{{contactsData}}" wx:for-index="idx" wx:for-item="contact" wx:key="idx">
     <view class='row'>
       <contacts-cell contactData="{{contact}}"></contacts-cell>
       <view class='line'></view>

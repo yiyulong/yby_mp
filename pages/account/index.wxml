@@ -39,7 +39,7 @@
           </view>
         </view>
       </van-cell>
-      <van-cell title="退货订单" is-link custom-class="my-order-cell" value-class="my-order-cell__value" title-class="my-order-cell__title" data-page-name="order" data-order-type="returnOrder" bind:click="jump">
+      <!-- <van-cell title="退货订单" is-link custom-class="my-order-cell" value-class="my-order-cell__value" title-class="my-order-cell__title" data-page-name="order" data-order-type="returnOrder" bind:click="jump">
         <view class="cell-value">
           <view>
             <text>数量</text>
@@ -62,13 +62,13 @@
             <text class="format-value">{{item.info.normalOrder.amt}}元</text>
           </view>
         </view>
-      </van-cell>
+      </van-cell> -->
     </block>
   </view>
-  <view class="action van-hairline--top">
+  <!-- <view class="action van-hairline--top">
     <view><van-button custom-class="normalBtn" bind:click="switchCarTab" data-order-type-index="{{1}}">正常退货</van-button></view>
     <view><van-button custom-class="defectiveBtn" bind:click="switchCarTab" data-order-type-index="{{2}}">残次退货</van-button></view>
-  </view>
+  </view> -->
 </view>
 <view class="bottom-content">
   <van-cell title="我的地址" is-link custom-class="bottom-cell" title-class="bottom-cell__title" data-page-name="contactsManager" bind:click="jump"></van-cell>

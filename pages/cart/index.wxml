@@ -1,9 +1,9 @@
 <view class="tabs van-hairline--top-bottom">
-  <my-tabs
+  <!-- <my-tabs
     tab-list="{{orderTypeTabs}}" 
     default-index="{{defaultOrderTypeIndex}}"
     bind:change="orderTypeTabsChange"
-  ></my-tabs>
+  ></my-tabs> -->
   <my-tabs
     tab-list="{{seasonTabs}}"
     default-index="{{defaultSeasonIndex}}"
@@ -14,9 +14,9 @@
   ></my-tabs>
   </view>
 <view class="dataList">
-  <block wx:for="{{orderObj}}" wx:for-index="key" wx:for-item="value" wx:key="{{key}}">
+  <block wx:for="{{orderObj}}" wx:for-index="key" wx:for-item="value" wx:key="key">
     <view wx:if="{{key === orderType}}">
-      <block wx:for="{{value.resultList}}" wx:for-index="idx" wx:for-item="product" wx:key="{{idx}}">
+      <block wx:for="{{value.resultList}}" wx:for-index="idx" wx:for-item="product" wx:key="idx">
         <prod-list-cell
           canDel="true"
           checkObj="{{checkStyleObj}}"

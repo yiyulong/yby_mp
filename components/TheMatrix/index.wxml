@@ -13,11 +13,11 @@
     swipe-threshold="{{4}}" animated lazy-render
   >
     <van-tab wx:for="{{tabList}}" wx:for-item="tab" wx:key="index" title="{{tab.title}}" name="{{index}}">
-      <block wx:for="{{matrix[index]}}" wx:for-index="idx" wx:key="{{item.aliasId}}">
-        <van-cell title="{{item.sizeName}}" value-class="cell-right-class">
-          <view>
+      <block wx:for="{{matrix[index]}}" wx:for-index="idx" wx:key="aliasId">
+        <van-cell title="{{item.sizeName}}" custom-class="cell-class" title-class="cell-title-class" value-class="cell-right-class">
+          <view class="cell-content">
             <block wx:if="{{from === 'cart'}}">
-              <text style="float: left;margin-right: 10px; font-size: 12px; text-align: left;">{{orderType === 'backOrder' ? '库存：' + item.store : '已订：' + item.qty}}</text>
+              <text style="margin-right: 10px; font-size: 12px; text-align: left;">{{orderType === 'backOrder' ? '库存：' + item.store : '已订：' + item.qty}}</text>
               <!-- orderType=returnOrder时 maxQty=已经退掉的订量 -->
               <van-stepper
                 value="{{orderType === 'backOrder' ? item.qty : 0}}"
@@ -29,7 +29,7 @@
               </van-stepper> 
             </block>
             <block wx:if="{{from === 'pdtInfo'}}">
-              <text style="float: left;margin-right: 10px; font-size: 12px; text-align: left;" wx:if="{{orderType === 'backOrder'}}">库存：{{item.store}}</text>
+              <text style="margin-right: 10px; font-size: 12px; text-align: left;" wx:if="{{orderType === 'backOrder'}}">库存：{{item.store}}</text>
               <block wx:if="{{stock}}">
                 <van-stepper
                   value="{{item.qty}}"
@@ -51,7 +51,7 @@
               </block>
             </block>
             <block wx:if="{{from === 'rOrderInfo'}}">
-              <text style="float: left;margin-right: 10px; font-size: 12px; text-align: left;" wx:if="{{orderType === 'backOrder'}}">库存：{{item.store}}</text>
+              <text style="margin-right: 10px; font-size: 12px; text-align: left;" wx:if="{{orderType === 'backOrder'}}">库存：{{item.store}}</text>
               <van-stepper
                 value="{{item.qty}}"
                 min="{{0}}"
@@ -63,8 +63,9 @@
               </van-stepper> 
             </block>
             <block wx:if="{{from === 'order'}}">
-              <text style="float: left;margin-right: 10px; font-size: 12px; text-align: left;">已订：{{filter.numberSlice(item.maxQty)}}</text>
+              <text style="margin-right: 10px; font-size: 12px; text-align: left;">已订：{{filter.numberSlice(item.maxQty)}}</text>
               <van-stepper
+                disabled
                 value="{{item.qty}}"
                 min="{{0}}"
                 max="{{item.maxQty}}"
@@ -138,7 +139,7 @@
   </view>
   <view class="btn-container" wx:if="{{from  === 'cart' || from  === 'order'}}">
     <van-button wx:if="{{orderType === 'backOrder'}}" bindtap="updateOrder" size="small" type="primary">保存</van-button>
-    <van-button wx:else bindtap="openReson" size="small" type="danger">退货</van-button>
+    <!-- <van-button wx:else bindtap="openReson" size="small" type="danger">退货</van-button> -->
   </view>
   <view class="btn-container" wx:if="{{from === 'rOrderInfo' && canSubmit}}">
     <van-button bindtap="directSubmitOrder" size="small">提交订单</van-button>

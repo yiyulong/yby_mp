@@ -3,7 +3,7 @@
   <!-- 图片列表 -->
   <!-- next-margin="{{ pdtInfo.images.length > 1 ? '180rpx' : 0 }} -->
   <swiper class="carousel-swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
-    <block wx:for="{{pdtInfo.images}}" wx:key="{{item}}">
+    <block wx:for="{{pdtInfo.images}}" wx:key="item">
       <swiper-item>
         <image src="{{item}}" class="carousel-image slide-image" mode="aspectFit" />
       </swiper-item>
@@ -13,7 +13,7 @@
     <view class="productName">{{pdtInfo.productName}}</view>
     <view class="styleName">{{pdtInfo.styleName}}</view>
     <scroll-view class="pdtAttrList" scroll-x>
-      <text class="pdtAttr" wx:for="{{pdtInfo.attrList}}" wx:key="{{item}}">{{item.attrName}}</text>
+      <text class="pdtAttr" wx:for="{{pdtInfo.attrList}}" wx:key="item">{{item.attrName}}</text>
     </scroll-view>
     <view class="productPrice">
       <text class="pricelist">¥{{pdtInfo.pricelist}}</text>
@@ -26,7 +26,7 @@
 <pop-bottom id="popup" bind:cancel="dismissPop">
   <order-matrix productId="{{productId||''}}" from="pdtInfo" orderType="backOrder" bind:reset="reset" bind:success="successOrder" bind:successPre="successOrderPre"></order-matrix>
 </pop-bottom>
-<van-popup show="{{ show }}" round bind:close="onClose" position="bottom">
+<van-popup custom-class="custom-class-popup" show="{{ show }}" round bind:close="onClose" position="bottom">
   <the-matrix
     productId="{{productId}}"
     from="pdtInfo"
