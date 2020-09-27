@@ -48,7 +48,9 @@ let api = {
   arrivalNotice: `${host}/b2b/product/arrivalNotice`, // 提交预订商品
   submitOrder: `${host}/b2b/order/submitOrder`, // 订单详情页面直接提交订单
   getReason: `${host}/b2b/cart/getReturnReason`,
-  getReserve: `${host}/b2b/product/getDestineCategory` // 获取预定商品列表分类
+  getReserve: `${host}/b2b/product/getDestineCategory`, // 获取预定商品列表分类
+  deleteOrderProduct: `${host}/b2b/order/deleteOrderProduct`, // 删除订单单个商品 普通用户删除订单单个商品
+  deleteOrder: `${host}/b2b/order/deleteOrder` // 删除订单 // 普通用户删除订单
 };
 
 var config = {

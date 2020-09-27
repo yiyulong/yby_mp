@@ -24,11 +24,44 @@
   </view>
 </block> -->
  <!-- {{showType.orderType === 'returnOrder' ? 'marginTop' : ''}} -->
-<view class="order-conent">
+<view class="order-content">
   <block wx:for="{{ordersData}}" wx:for-index="idx" wx:for-item="order" wx:key="idex">
-    <prod-list-cell orderId="{{orderID}}" shopData="{{order}}" showType="{{showType}}" orderStatus="{{orderConfig.orderStatus}}"></prod-list-cell>
+    <prod-list-cell
+      class="prod-list-cell-component"
+      can-del="{{ orderConfig.orderStatusEn === 'REJECTED' || orderConfig.orderStatusEn === 'NEW' }}"
+      orderId="{{orderID}}"
+      shopData="{{order}}"
+      showType="{{showType}}"
+      orderStatus="{{orderConfig.orderStatusEn}}"
+      bind:del="deletePdt"
+    ></prod-list-cell>
   </block>
 </view>
+
+<view class="action-content" wx:if="{{ orderConfig.orderStatusEn === 'REJECTED' || orderConfig.orderStatusEn === 'NEW' }}">
+  <van-button
+    type="danger"
+    round
+    loading="{{ deleteLoading }}"
+    loading-type="circular"
+    loading-text="删除中"
+    custom-class="action-btn lt"
+    size="normal"
+    bind:click="deleteOrder"
+  >删除订单</van-button>
+  <van-button
+    type="primary"
+    round
+    loading="{{ submitLoading}}"
+    loading-type="circular"
+    custom-class="action-btn rg"
+    size="normal"
+    bind:click="submitOrder"
+  >提交订单</van-button>
+</view>
+
+<van-dialog id="van-dialog" />
+
 <!-- <view class='contents'>
 
   <view class='showMsg'>

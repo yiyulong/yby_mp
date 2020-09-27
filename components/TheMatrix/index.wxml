@@ -55,10 +55,10 @@
               <van-stepper
                 value="{{item.qty}}"
                 min="{{0}}"
-                max="{{item.qty}}"
+                max="{{item.store}}"
                 size="small" data-idx="{{idx}}"
                 integer
-                disabled="{{!canSubmit}}"
+                disabled="{{ orderStatus !== 'REJECTED' && orderStatus !== 'NEW' }}"
                 bind:change="handleZanStepperChange">
               </van-stepper> 
             </block>
@@ -141,9 +141,9 @@
     <van-button wx:if="{{orderType === 'backOrder'}}" bindtap="updateOrder" size="small" type="primary">保存</van-button>
     <!-- <van-button wx:else bindtap="openReson" size="small" type="danger">退货</van-button> -->
   </view>
-  <view class="btn-container" wx:if="{{from === 'rOrderInfo' && canSubmit}}">
+  <!-- <view class="btn-container" wx:if="{{from === 'rOrderInfo' && (orderStatus === 'REJECTED' || orderStatus === 'NEW')}}">
     <van-button bindtap="directSubmitOrder" size="small">提交订单</van-button>
-  </view>
+  </view> -->
 </van-skeleton>
 <van-dialog
   use-slot

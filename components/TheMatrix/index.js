@@ -1,7 +1,11 @@
 // components/orderMatrix/index.js
 const app = getApp();
-import config from '../../config.js';
+import config, { timeGoods } from '../../config.js';
 Component({
+  behaviors: ['wx://component-export'],
+  export() {
+    return this.data._modifyData
+  },
   options: {
     pureDataPattern: /^_/ // 指定所有 _ 开头的数据字段为纯数据字段
   },
@@ -43,10 +47,10 @@ Component({
       value: ''
     },
     /**
-     * 订单状态
-     * TODO 判断是否可以在订单列表中直接提交订单
+     * ! 订单状态
+     * todo REJECTED状态可以修改订单
      */
-    canSubmit: Boolean
+    orderStatus: String
   },
 
 
@@ -82,10 +86,11 @@ Component({
     radioOrderType: '', // 退货理由选中的orderType
     reasonShow: false,
     reasonText: '',
-    stock: false // 是否还有库存 false：提交到货通知 true：加入购物车
+    stock: false, // 是否还有库存 false：提交到货通知 true：加入购物车
+    _modifyData: {} // 所有修改过的单元格
   },
   ready() {
-    console.log('from:' + this.data.from, 'orderType:', this.data.orderType)
+    console.log('from:' + this.data.from, 'orderType:', this.data.orderType, 'orderId: ' + this.data.orderId, 'productId: ' + this.data.productId)
     this.getSpec();
     if (this.data.orderType === 'returnOrder') this.getReason()
   },
@@ -182,6 +187,10 @@ Component({
       const selectedId = this.data.selectedId;
       this.data._matrix[selectedId][idx].qty = stepper
       this.data._matrix[selectedId][idx].modify = true
+      // 保存修改过的单元格
+      const currentData = this.data._matrix[selectedId][idx]
+      this.data._modifyData[currentData.aliasId] = { qty: currentData.qty, productId: currentData.pdtId }
+
       // this.setData({
       //   [`matrix.${selectedId}[${idx}].qty`]: stepper,
       //   [`matrix.${selectedId}[${idx}].modify`]: true // 修改之后的单元格做个标记
@@ -370,7 +379,8 @@ Component({
             sum += Number(item.qty)
             return {
               pAliasId: item.aliasId,
-              qty: item.qty
+              qty: item.qty,
+              productId: item.pdtId
             }
           })
           matrixData.push(...arr)

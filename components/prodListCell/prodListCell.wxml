@@ -39,11 +39,12 @@
 
   <view wx:if="{{showDetail}}">
     <the-matrix
+      class="the-matrix-component"
       orderId="{{shopData.orderId || orderId}}"
       productId="{{shopData.productId}}"
       from="{{showType.from}}"
       orderType="{{showType.orderType}}"
-      canSubmit="{{orderStatus === '未提交'}}"
+      orderStatus="{{orderStatus}}"
       bind:success="successOrder"
     ></the-matrix>
   </view>

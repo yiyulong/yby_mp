@@ -6,6 +6,7 @@
   <view class="msgView">
     <text class="title">{{orderData.orderNumber}}</text>
     <text class="status">{{orderData.orderStatus}}</text>
+    <text class="state">{{ orderData.orderStatusCh }}</text>
   </view>
 
 </view>

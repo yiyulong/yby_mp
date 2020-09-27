@@ -1,5 +1,8 @@
 Component({
-
+  behaviors: ['wx://component-export'],
+  export() {
+    return this.getModifyData()
+  },
   /**
    * 组件的属性列表
    */
@@ -51,7 +54,7 @@ Component({
     },
 
     /**
-     * 是否允许多选
+     * 是否允许删除
      */
     canDel: {
       type: Boolean
@@ -59,6 +62,7 @@ Component({
 
     /**
      * 订单状态
+     * ! REJECTED状态时可以编辑
      * TODO 判断是否可以在订单列表中直接提交订单
      */
     orderStatus: {
@@ -195,5 +199,9 @@ Component({
       //返回角度 / Math.atan()返回数字的反正切值
       return 360 * Math.atan(_Y / _X) / (2 * Math.PI);
     },
+    getModifyData () {
+      const modifyData = this.selectComponent('.the-matrix-component')
+      return modifyData
+    }
   }
 })

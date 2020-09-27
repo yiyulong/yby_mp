@@ -10,7 +10,7 @@ Page({
    */
   data: {
     userName: "",
-    accountInfo: "",
+    // accountInfo: "",
     userbg:"",
     allOrder: '',//订单总计
     normalOrder: '',//原始订单
@@ -50,7 +50,7 @@ Page({
       this.setData({
         userName: userName
       });
-      this.prepareData();
+      // this.prepareData();
     }
     // 获取金额 和 数量
     this.getPriceNum()
@@ -63,20 +63,20 @@ Page({
       url: this.data.userName ? '/pages/logout/index' : '/pages/login/index',
     })
   },
-  prepareData() {
-    let that = this;
-    var data = {
-      url: config.getAccountInfo,
-      params: {}
-    }
-    app.nGet(data).then(data => {
-      this.setData({
-        accountInfo: data.data
-      });
-      let webContent = data.data ? data.data : '';
-      WxParse.wxParse('webContent', 'html', webContent, that, 0);
-    }, res => {});
-  },
+  // prepareData() {
+  //   let that = this;
+  //   var data = {
+  //     url: config.getAccountInfo,
+  //     params: {}
+  //   }
+  //   app.nGet(data).then(data => {
+  //     this.setData({
+  //       accountInfo: data.data
+  //     });
+  //     let webContent = data.data ? data.data : '';
+  //     WxParse.wxParse('webContent', 'html', webContent, that, 0);
+  //   }, res => {});
+  // },
 
   getLayout() {
     var data = {

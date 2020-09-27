@@ -10,9 +10,30 @@ Page {
   height: 88rpx;
   z-index: 1;
 }
-.order-conent {
+.order-content {
   background: #fff;
+  margin-bottom: calc(130rpx + constant(safe-area-inset-bottom));
+  margin-bottom: calc(130rpx + env(safe-area-inset-bottom));
 }
+.action-content {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(30rpx + constant(safe-area-inset-bottom));
+  bottom: calc(30rpx + env(safe-area-inset-bottom));
+}
+.action-content .action-btn {
+  position: absolute;
+  bottom: 0;
+  box-shadow: 0 4rpx 10rpx rgba(000, 000, 000, .3);
+}
+.action-content .action-btn.lt {
+  left: 12%;
+}
+.action-content .action-btn.rg {
+  right: 12%;
+}
+
 .marginTop {
   margin-top: 100rpx;
 }

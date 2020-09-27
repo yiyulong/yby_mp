@@ -54,3 +54,7 @@
 .title {
   font-size: 32rpx;
 }
+
+.state {
+  font-size: 28rpx;
+}
