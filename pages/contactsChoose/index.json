@@ -1,7 +1,9 @@
 {
   "navigationBarTitleText": "选择联系人",
   "usingComponents": {
-    "contacts-cell": "/components/contactsCell/contactsCell"
+    "contacts-cell": "/components/contactsCell/contactsCell",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-button": "@vant/weapp/button/index"
   },
   "enablePullDownRefresh": false
 }

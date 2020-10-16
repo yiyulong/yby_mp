@@ -54,6 +54,7 @@ Page {
   bottom: calc(30px + constant(safe-area-inset-bottom));
   bottom: calc(30px + env(safe-area-inset-bottom));
   width: 100px;
+  box-shadow: 0 4rpx 10rpx rgba(000, 000, 000, .3);
 }
 .ctrlContainer .ctrlBtn.rejectBtn {
   left: 60px;

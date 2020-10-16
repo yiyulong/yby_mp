@@ -1,5 +1,14 @@
 <!--pages/account/index.wxml-->
 <import src="../../common/lib/wxParse/wxParse.wxml" />
+<van-nav-bar
+  title="个人中心"
+  bind:click-left="onClickLeft"
+  fixed
+  placeholder
+  custom-class="custom-nav-bar"
+>
+  <van-icon name="chat-o" size="24px" slot="left" />
+</van-nav-bar>
 <view class="bg-content" style="background-image: url({{userbg}})">
   <view class="content">
     <view class="title">
@@ -12,7 +21,7 @@
   </view>
 </view>
 <view class="order-content">
-  <my-tabs tab-list="{{tabList}}" bind:change="changeTab"></my-tabs>
+  <!-- <my-tabs tab-list="{{tabList}}" bind:change="changeTab"></my-tabs> -->
   <view class="van-hairline--top">
     <block wx:for="{{orderInfo}}" wx:if="{{activeIndex === index}}" wx:key="index">
       <van-cell title="订单总计" is-link custom-class="my-order-cell" value-class="my-order-cell__value" title-class="my-order-cell__title" data-page-name="orderList" bind:click="jump">
@@ -79,3 +88,6 @@
 <view class="bottom-content" wx:if="{{role === 'AU'}}">
   <van-cell title="审核订单" is-link custom-class="bottom-cell" title-class="bottom-cell__title" bind:click="jumpRevieworder"></van-cell>
 </view>
+<!-- <view class="bottom-content" wx:if="{{role === 'AU'}}">
+  <van-cell title="获取通知" custom-class="bottom-cell" title-class="bottom-cell__title" bind:click="subscrbeMessage"></van-cell>
+</view> -->

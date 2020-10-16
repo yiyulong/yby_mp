@@ -1,0 +1,27 @@
+.container {
+  padding: 20rpx 30rpx;
+}
+.content {
+  margin-bottom: 50rpx;
+  border-radius: 10rpx;
+  box-shadow: 0 1px 10rpx rgba(0, 0, 0, .1);
+}
+.content-item {
+  padding: 20rpx;
+}
+.content-item .title {
+  font-size: 30rpx;
+}
+
+.info {
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: 24rpx;
+}
+.info > view {
+  order: 1;
+}
+.info .label {
+  color: var(--sub-textColor);
+}
+.info .value {}

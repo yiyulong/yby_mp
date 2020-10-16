@@ -23,9 +23,9 @@
     <view class="btn"><van-button size="large" bind:tap="changePassword" disabled="{{!oldPassword.value || !newPassword.value || !confirmNewPassword.value || newPassword.value !== confirmNewPassword.value}}">确认修改</van-button></view>
   </view>
   <!-- 登陆按钮 -->
-  <view class="btn">
+  <!-- <view class="btn">
     <van-button size="large" bind:tap="logout">退出登录</van-button>
-  </view>
+  </view> -->
 
 </view>
 <!-- <view class="weui-footer">

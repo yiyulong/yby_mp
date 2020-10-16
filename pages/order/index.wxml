@@ -1,9 +1,16 @@
 <view class="tabs van-hairline--top-bottom">
-  <my-tabs
+  <!-- <my-tabs
     tab-list="{{seasonTabs}}"
     default-index="{{defaultSeasonIndex}}"
     bind:change="seasonTabsChange"
-  ></my-tabs>
+  ></my-tabs> -->
+  <van-search
+    value="{{ searchCondition }}"
+    placeholder="请输入订单编号或用户关键词"
+    shape="round"
+    bind:search="onSearch"
+    bind:clear="onClear"
+  />
 </view>
 <view class='contents'>
   <block wx:for="{{ordersData}}" wx:for-index="idx" wx:for-item="order" wx:key="idx">

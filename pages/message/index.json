@@ -1,0 +1,11 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "消息通知",
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "van-skeleton": "@vant/weapp/skeleton/index",
+    "van-empty": "@vant/weapp/empty/index",
+    "van-divider": "@vant/weapp/divider/index",
+    "my-load-more": "/components/my-load-more/index"
+  }
+}

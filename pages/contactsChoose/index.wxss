@@ -37,3 +37,35 @@ page {
   font-size: 28rpx;
   font-weight: normal;
 }
+
+.custom-popup {
+  padding: 30rpx;
+}
+.custom-popup .title {
+  font-size: 32rpx;
+  text-align: center;
+}
+.custom-popup .content {
+  padding: 20rpx;
+}
+.custom-popup .content .desc {
+  color: #666;
+}
+.custom-popup .content .select {
+  margin: 20rpx;
+}
+.custom-popup .content .select .picker {
+  text-align: center;
+  line-height: 68rpx;
+  font-weight: bold;
+  font-size: 32rpx;
+}
+.custom-popup .footer {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+.custom-popup .footer .custom-button {
+  min-width: 240rpx;
+}

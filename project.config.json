@@ -1,5 +1,6 @@
 {
 	"description": "项目配置文件。",
+	"cloudfunctionRoot": "functions/",
 	"packOptions": {
 		"ignore": []
 	},
@@ -32,12 +33,13 @@
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.12.0",
+	"libVersion": "2.13.1",
 	"appid": "wxcc281c455307b118",
 	"projectname": "yby_mp",
 	"isGameTourist": false,
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -183,6 +185,13 @@
 					"id": -1,
 					"name": "pages/index/index",
 					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 19,
+					"name": "pages/message/index",
+					"pathName": "pages/message/index",
 					"query": "",
 					"scene": null
 				}

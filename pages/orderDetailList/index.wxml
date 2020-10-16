@@ -1,4 +1,5 @@
 <!--pages/orderDetailList/index.wxml-->
+<wxs src="./stateClass.wxs" module="state"></wxs>
 <!-- showType.orderType === 'returnOrder' -->
 <block wx:if="{{false}}">
   <view class="editAddress van-hairline--top-bottom">
@@ -24,6 +25,40 @@
   </view>
 </block> -->
  <!-- {{showType.orderType === 'returnOrder' ? 'marginTop' : ''}} -->
+
+<view class="order-info">
+  <view class="order_line_1">
+    <text class="orderNumber">{{ orderNumber }}</text>
+    <text style="color: {{state.color(orderStatusEn)}}">{{orderStatusCh}}</text>
+  </view>
+  <view class="order_line_2">
+    <text class="totalQty">总订量：{{ totalQty  }}</text>
+    <text class="totalAmount">总金额：{{ totalAmount }}</text>
+  </view>
+  <van-collapse value="{{ activeNames }}" bind:change="onChange">
+    <van-collapse-item custom-class="custom-collapse" content-class="content-collapse" title="更多收货信息" name="1">
+      <view class="address-box">
+        <view class="address_line_1">
+          <van-tag plain type="primary">{{ expressWay  }}</van-tag>
+          <text class="orderStatus">{{ orderStatus  }}</text>
+        </view>
+        <view class="address_line_2">
+          <van-icon name="user-o" />
+          <text>{{ address.consignee  }}</text>
+        </view>
+        <view class="address_line_3">
+          <van-icon name="phone-o" />
+          <text>{{ address.phone  }}</text>
+        </view>
+        <view class="address_line_4">
+          <van-icon name="logistics" />
+          <text>{{ address.fullAddress }}</text>
+        </view>
+      </view>
+    </van-collapse-item>
+  </van-collapse>
+</view>
+
 <view class="order-content">
   <block wx:for="{{ordersData}}" wx:for-index="idx" wx:for-item="order" wx:key="idex">
     <prod-list-cell

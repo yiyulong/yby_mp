@@ -9,6 +9,7 @@ Page({
   data: {
     address: "", // 收货地址
     addressID: "", // 收货地址 ID
+    expressWay: '', // 快递方式
     sumCount: 0, // 总计量
     sumMoney: 0.00, // 总价
     checkStyleObj: {}, // 记录选中数据
@@ -340,7 +341,8 @@ Page({
         orderType: this.data.orderType,
         styleNameList: JSON.stringify(_tempList),
         addressId: this.data.addressID,
-        expressNumber: this.data.expressNumber
+        expressNumber: this.data.expressNumber,
+        expressWay: this.data.expressWay
       }
     }
     app.nPost(paramData).then(ret => {

@@ -55,9 +55,6 @@ Page({
     //   })
     // }
   },
-  onUnload () {
-    app.globalData.at_login_page = false
-  },
   // handleBtn() {
   //   if (this.data.isLogin) {
   //     this.logout();
@@ -212,7 +209,7 @@ Page({
       }
       app.nGet(data).then(res => {
         app.showMsg("退出成功");
-        app.clearValue();
+        app.clearValue()
         // wx.navigateBack();
         wx.reLaunch({
           url: '/pages/login/index',

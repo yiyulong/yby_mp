@@ -1,6 +1,6 @@
 <view
   wx:for="{{filterList}}"
-  wx:key="{{item.id}}"
+  wx:key="id"
   bind:tap="onTap"
   data-stylename="{{item.styleName}}"
   data-image="{{item.image}}"

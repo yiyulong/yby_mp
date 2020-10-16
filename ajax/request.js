@@ -1,5 +1,6 @@
 // const baseUrl = 'http://120.24.29.201:8080/trendfinder'
-const baseUrl = 'https://yesbyyesir.dlt-world.com'
+// const baseUrl = 'https://yesbyyesir.dlt-world.com'
+const baseUrl = 'https://cmst.dlt-world.com/yby'
 function getCommonHeader () {
 
   let header = {
@@ -65,6 +66,14 @@ function request (url, data = {}, method = "POST", config = {}) {
         }
         if (data?.code === 666 || data?.code === 0) {
           resolve(data.data)
+        } else if (data?.code === 8006 || data?.code === 8005) { // 8006 用户未登录  8005 无效的SESSION-TOKEN
+          wx.clearStorageSync()
+          const pages = getCurrentPages(),
+            currentPage = pages[pages.length - 1]
+          if (currentPage && currentPage.route.split(/\//, 2).pop() === 'login') return
+          wx.navigateTo({
+            url: '/pages/login/index'
+          })
         } else {
           if (showToast) {
             wx.showToast({ title: data?.message || '请求错误', icon: 'none' })

@@ -2,7 +2,7 @@
 Page {
   box-sizing: border-box;
   /* padding-top: 200rpx; */
-  padding-top: 100rpx;
+  /* padding-top: 100rpx; */
   padding-bottom: calc(100rpx + 48px + env(safe-area-inset-bottom));
 }
 .tabs {

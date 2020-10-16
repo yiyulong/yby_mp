@@ -44,3 +44,4 @@
     <van-button type="danger" bindtap="unPassOrder" round custom-class="ctrlBtn unsubmitBtn">反提交</van-button>
   </van-transition>
 </view>
+<van-toast id="van-toast" />

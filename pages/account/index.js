@@ -24,6 +24,18 @@ Page({
   },
 
   onLoad: function() {
+    // wx.getSetting({
+    //   withSubscriptions: true,
+    //   success (res) {
+    //     console.log(res)
+    //   }
+    // })
+    // wx.cloud.callFunction({
+    //   name:'getOpenid',
+    //   complete:res=>{
+    //     console.log('getOpenid--',res)
+    //   }
+    // })
     this.getLayout();
     const tabList = app.getValue('orderListHeader')
     if (!tabList) return
@@ -59,9 +71,41 @@ Page({
     })
   },
   checkLogin() {
-    wx.navigateTo({
-      url: this.data.userName ? '/pages/logout/index' : '/pages/login/index',
-    })
+    if (this.data.userName) {
+      wx.showActionSheet({
+        itemList: ['修改密码', '退出登陆'],
+        success (res) {
+          switch (res.tapIndex) {
+            case 0:
+              wx.navigateTo({
+                url: '/pages/logout/index',
+              })
+              break
+            case 1:
+              var data = {
+                url: config.logout,
+                params: {}
+              }
+              app.nGet(data).then(res => {
+                app.clearValue()
+                wx.reLaunch({
+                  url: '/pages/login/index',
+                })
+              }, err => {
+                // console.error(err)
+              })
+              break
+          }
+        },
+        fail (res) {
+          console.log(res.errMsg)
+        }
+      })
+    } else {
+      wx.reLaunch({
+        url: '/pages/login/index'
+      })
+    }
   },
   // prepareData() {
   //   let that = this;
@@ -172,5 +216,18 @@ Page({
         page.onLoad() // 跳转成功触发购物车的onLond生命周期
       }
     }) 
+  },
+  subscrbeMessage () {
+    wx.requestSubscribeMessage({
+      tmplIds: ['PPkMjx3zcS7CAUrW9YCkLtlLb0h7ON3--LJSa8Sqcyw', 'bwnMpNCY0OOMCOh_R9cHerG1rMS8U9tb9lpYtnipob4'],
+      success (res) {
+        console.log(res)
+      }
+    })
+  },
+  onClickLeft() {
+    wx.navigateTo({
+      url: '/pages/message/index'
+    })
   }
 })

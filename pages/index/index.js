@@ -49,6 +49,87 @@ Page({
   },
 
   onLoad () {
+    wx.getStorage({
+      key: 'role',
+      success (res) {
+        console.log(res)
+        return
+        const { data: role } = res
+        if (role === 'AU' || role === 'SUM' || 'BU') {  
+          app.getUserOpenId().then(() => {
+            const tmplIds = ['PPkMjx3zcS7CAUrW9YCkLtlLb0h7ON3--LJSa8Sqcyw', 'bwnMpNCY0OOMCOh_R9cHerG1rMS8U9tb9lpYtnipob4']
+            wx.getSetting({
+              withSubscriptions: true,
+              success (res) {
+                console.log(res.subscriptionsSetting)
+                const { mainSwitch, itemSettings } = res.subscriptionsSetting
+                if (!mainSwitch) {
+                  wx.showModal({
+                    content: '你已经拒绝接受消息提醒，是否重新打开？',
+                    success (res) {
+                      if (res.confirm) {
+                        console.log('用户点击确定')
+                        wx.openSetting()
+                      } else if (res.cancel) {
+                        console.log('用户点击取消')
+                      }
+                    }
+                  })
+                } else {
+                  let restId = []
+                  let allAccept = false
+                  if (itemSettings) {
+                    for (let index = 0; index < tmplIds.length; index++) {
+                      const element = tmplIds[index]
+                      if (typeof itemSettings[element] === 'undefined') {
+                        restId.push(element)
+                      }
+                    }
+                    allAccept = tmplIds.every(item => {
+                      return (typeof itemSettings[item] !== 'undefined') && (itemSettings[item] === 'accept')
+                    })
+                  } else {
+                    restId = tmplIds
+                  }
+                  console.log('restId: ' + restId, 'allAccept: ' + allAccept)
+                  if (!allAccept) {
+                    wx.showModal({
+                      content: '是否订阅消息通知',
+                      success (res) {
+                        if (res.confirm) {
+                          console.log('用户点击确定')
+                          wx.requestSubscribeMessage({
+                            tmplIds,
+                            success (res) {
+                              console.log(res)
+                              const isAccept = restId.some(item => {
+                                return res[item] === 'accept'
+                              })
+                              wx.showToast({
+                                title: isAccept ? '订阅成功！' : '您已拒绝授权，将无法在微信中收到回复通知！',
+                                duration: 1500,
+                                icon: isAccept ? 'success' : 'none'
+                              })
+                            }
+                          })
+                        } else if (res.cancel) {
+                          console.log('用户点击取消')
+                          wx.showToast({
+                            title: '您已拒绝授权，将无法在微信中收到回复通知！',
+                            duration: 1500,
+                            icon: 'none'
+                          })
+                        }
+                      }
+                    })
+                  }
+                }
+              }
+            })
+          })
+        }
+      }
+    })
     // 轮播图
     getProductCarousel().then(res => {
       this.setData({

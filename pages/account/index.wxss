@@ -7,6 +7,9 @@ page {
   padding-bottom: env(safe-area-inset-bottom);
   background-color: #f7f7f7;
 }
+.custom-nav-bar {
+  box-sizing: content-box;
+}
 /* 头部背景 */
 .bg-content {
   padding: 15px 15px 0;

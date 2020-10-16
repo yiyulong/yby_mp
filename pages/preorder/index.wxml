@@ -2,7 +2,7 @@
   <my-tabs tab-list="{{tabs}}" bind:change="tabChange"></my-tabs>
 </view>
 <view class="preorder-content">
-  <block wx:for="{{tabs}}" wx:key="{{item.value}}">
+  <block wx:for="{{tabs}}" wx:key="value">
     <view hidden="{{active !== index}}">
       <preorder-content
         custom-class="preorder-content_item"

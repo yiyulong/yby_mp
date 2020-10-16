@@ -4,7 +4,7 @@
     "pop-bottom": "/components/popBottom/popBottom",
     "van-button": "/common/lib/vantUi/button/index",
     "van-dialog": "vant-weapp/dialog",
-    "van-popup": "vant-weapp/popup",
+    "van-popup": "@vant/weapp/popup/index",
     "the-matrix": "/components/TheMatrix/index"
   }
 }

@@ -19,7 +19,8 @@
     "pages/logistics/index",
     "pages/reviewOrder/index",
     "pages/preorder/index",
-    "pages/logout/index"
+    "pages/logout/index",
+    "pages/message/index"
   ],
   "subPackages": [
     {
@@ -39,7 +40,10 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#ffffff",
+    "backgroundColorTop": "#ffffff",
+    "backgroundColorBottom": "#ffffff",
     "navigationBarTitleText": "YES BY YESIR",
     "navigationBarTextStyle": "black",
     "onReachBottomDistance": 50

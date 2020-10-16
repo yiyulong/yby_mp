@@ -2,7 +2,8 @@
  * 接口配置文件
  */
 
- const host = "https://yesbyyesir.dlt-world.com"
+//  const host = "https://yesbyyesir.dlt-world.com"
+const host = 'https://cmst.dlt-world.com/yby'
 // const host = "https://immi.dingliantech.com";
 // const host = "http://192.168.3.16:8080/trendfinder";
 // const host = "http://172.16.0.176:8082";
@@ -50,7 +51,8 @@ let api = {
   getReason: `${host}/b2b/cart/getReturnReason`,
   getReserve: `${host}/b2b/product/getDestineCategory`, // 获取预定商品列表分类
   deleteOrderProduct: `${host}/b2b/order/deleteOrderProduct`, // 删除订单单个商品 普通用户删除订单单个商品
-  deleteOrder: `${host}/b2b/order/deleteOrder` // 删除订单 // 普通用户删除订单
+  deleteOrder: `${host}/b2b/order/deleteOrder`, // 删除订单 // 普通用户删除订单
+  openIdUrl: `${host}/b2b/user/getWxLoginInfo` // 微信授权登录
 };
 
 var config = {

@@ -4,6 +4,12 @@ App({
 
   onLaunch: function(opts) {
     // this.getValue('role') === 'AU' ? tabs.splice(2, 1) : tabs.splice(3, 1)
+
+    // // 云开发初始化
+    // wx.cloud.init({
+    //   env:"dev-ylb6u",
+    //   traceUser:true
+    // })
   },
 
   onShow: function(opts) {
@@ -15,43 +21,40 @@ App({
   },
 
   globalData: {
-    openid: null,
     car_defaultOrderTypeIndex: null,  // 购物车页面默认orderType tab下标
     car_defaultSeasonIndex: null,  // 购物车页面默认season tab下标
-    at_login_page: false  // 避免login页面重复跳转
+    SDKVersion: wx.getSystemInfoSync().SDKVersion
   },
 
   // lazy loading openid
-  getUserOpenId: function(callback) {
-    var self = this
-
-    if (self.globalData.openid) {
-      callback(null, self.globalData.openid)
-    } else {
-      wx.login({
-        success: function(data) {
-          wx.request({
-            url: openIdUrl,
-            data: {
-              code: data.code
-            },
-            success: function(res) {
-              console.log('拉取openid成功', res)
-              self.globalData.openid = res.data.openid
-              callback(null, self.globalData.openid)
-            },
-            fail: function(res) {
-              console.log('拉取用户openid失败，将无法正常使用开放接口等服务', res)
-              callback(res)
-            }
-          })
-        },
-        fail: function(err) {
-          console.log('wx.login 接口调用失败，将无法正常使用开放接口等服务', err)
-          callback(err)
-        }
-      })
-    }
+  getUserOpenId: function(isNeedWxLogin) {
+    const _this = this
+    return new Promise((resolve, reject) => {
+      if (!isNeedWxLogin) {
+        resolve()
+      } else {
+        wx.login({
+          success: function(data) {
+            _this.nGet({
+              url: openIdUrl,
+              params: {
+                jsCode: data.code
+              }
+            }).then(res => {
+              console.log('拉取hasOpenId成功', res)
+              resolve()
+            }).catch(err => {
+              console.log('wx.login 接口调用失败，将无法正常使用开放接口等服务', err)
+              reject()
+            })
+          },
+          fail: function(err) {
+            console.log('wx.login 接口调用失败，将无法正常使用开放接口等服务', err)
+            reject()
+          }
+        })
+      }
+    })
   },
 
   // ======网络请求======
@@ -82,8 +85,7 @@ App({
             _that.clearValue();
             const pages = getCurrentPages(),
               currentPage = pages[pages.length - 1]
-            if (_that.globalData.at_login_page || currentPage && currentPage.route.split(/\//, 2).pop() === 'login') return
-            _that.globalData.at_login_page = true
+            if (currentPage && currentPage.route.split(/\//, 2).pop() === 'login') return
             wx.navigateTo({
               url: '/pages/login/index'
             });

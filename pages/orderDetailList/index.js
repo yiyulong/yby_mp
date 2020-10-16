@@ -17,7 +17,16 @@ Page({
       orderType: ''
     }, // 下单组件所需要参数
     deleteLoading: false,
-    submitLoading: false
+    submitLoading: false,
+    orderNumber: '',
+    orderStatus: '',
+    orderStatusCh: '',
+    orderStatusEn: '',
+    totalAmount: null,
+    totalQty: null,
+    activeNames: ['0'],
+    address: {},
+    expressWay: ''
   },
 
   /**
@@ -68,9 +77,11 @@ Page({
           address: ret.data.address,
           orderStatusEn: ret.data.orderStatusEn
         };
+        const { address, expressWay, orderNumber, orderStatus, orderStatusCh, orderStatusEn, totalAmount, totalQty } = ret.data
         this.setData({
           orderConfig: orderConfig,
-          ordersData: ret.data.list
+          ordersData: ret.data.list,
+          address, expressWay, orderNumber, orderStatus, orderStatusCh, orderStatusEn, totalAmount, totalQty
         });
         // console.log(JSON.stringify(ret.data.list));
       }
@@ -176,6 +187,11 @@ Page({
     }).catch(err => {
       // console.log(err)
       app.showMsg(err.message || '提交失败')
+    })
+  },
+  onChange(event) {
+    this.setData({
+      activeNames: event.detail
     })
   }
 })
