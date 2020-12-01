@@ -34,7 +34,7 @@ Page({
     }).then(res => {
       // console.log(res)
       this.setData({
-        result: this.data.page === 1 ? res.list : this.data.result.push(...res.list),
+        result: this.data.page === 1 ? res.list : this.data.result.concat(res.list),
         loadDone: res?.list?.length !== this.data.size,
         title: res?.list?.length !== this.data.size ? '暂无更多' : '正在加载...'
       })

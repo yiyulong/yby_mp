@@ -1,201 +1,201 @@
 {
-	"description": "项目配置文件。",
-	"cloudfunctionRoot": "functions/",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": true,
-		"es6": true,
-		"enhance": true,
-		"postcss": true,
-		"preloadBackgroundData": false,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"nodeModules": true,
-		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"uglifyFileName": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": false,
-		"uploadWithSourceMap": true,
-		"compileHotReLoad": false,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"bundle": false,
-		"useIsolateContext": true,
-		"useCompilerModule": false,
-		"userConfirmedUseCompilerModuleSwitch": false
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.13.1",
-	"appid": "wxcc281c455307b118",
-	"projectname": "yby_mp",
-	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"currentL": -1,
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": [
-				{
-					"id": -1,
-					"name": "我的",
-					"pathName": "pages/account/index",
-					"query": ""
-				},
-				{
-					"id": 1,
-					"name": "商品详情",
-					"pathName": "pages/pdtInfo/index",
-					"query": "productId=1",
-					"scene": 1047
-				},
-				{
-					"id": 2,
-					"name": "购物车",
-					"pathName": "pages/cart/index",
-					"query": ""
-				},
-				{
-					"id": 3,
-					"name": "收货地址-管理",
-					"pathName": "pages/contactsManager/index",
-					"query": ""
-				},
-				{
-					"id": 4,
-					"name": "收货地址-新增",
-					"pathName": "pages/contactsUpdate/index",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "收货地址-选择",
-					"pathName": "pages/contactsChoose/index",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "我的订单",
-					"pathName": "pages/orderList/index",
-					"query": ""
-				},
-				{
-					"id": 7,
-					"name": "退货单列表",
-					"pathName": "pages/backOrderList/index",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "登录",
-					"pathName": "pages/login/index",
-					"query": ""
-				},
-				{
-					"id": 9,
-					"name": "首页",
-					"pathName": "pages/index/index",
-					"query": "",
-					"scene": 1047
-				},
-				{
-					"id": -1,
-					"name": "退货订单",
-					"pathName": "pages/orderDetailList/index",
-					"query": "orderType=03&orderID=1547"
-				},
-				{
-					"id": -1,
-					"name": "pages/reviewOrder/index",
-					"pathName": "pages/reviewOrder/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/preorder/index",
-					"pathName": "pages/preorder/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/account/index",
-					"pathName": "pages/account/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/heroOrderList/index",
-					"pathName": "pages/heroOrderList/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 15,
-					"name": "pages/index/index",
-					"pathName": "pages/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/contactsManager/index",
-					"pathName": "pages/contactsManager/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "subPackages/reserve/pages/index/index",
-					"pathName": "subPackages/reserve/pages/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/index/index",
-					"pathName": "pages/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 19,
-					"name": "pages/message/index",
-					"pathName": "pages/message/index",
-					"query": "",
-					"scene": null
-				}
-			]
-		}
-	}
+  "description": "项目配置文件。",
+  "cloudfunctionRoot": "functions/",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": true,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": false,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "bundle": false,
+    "useIsolateContext": true,
+    "useCompilerModule": false,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.14.0",
+  "appid": "wxcc281c455307b118",
+  "projectname": "yby_mp",
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "currentL": -1,
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "我的",
+          "pathName": "pages/account/index",
+          "query": ""
+        },
+        {
+          "id": 1,
+          "name": "商品详情",
+          "pathName": "pages/pdtInfo/index",
+          "query": "productId=1",
+          "scene": 1047
+        },
+        {
+          "id": 2,
+          "name": "购物车",
+          "pathName": "pages/cart/index",
+          "query": ""
+        },
+        {
+          "id": 3,
+          "name": "收货地址-管理",
+          "pathName": "pages/contactsManager/index",
+          "query": ""
+        },
+        {
+          "id": 4,
+          "name": "收货地址-新增",
+          "pathName": "pages/contactsUpdate/index",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "收货地址-选择",
+          "pathName": "pages/contactsChoose/index",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "我的订单",
+          "pathName": "pages/orderList/index",
+          "query": ""
+        },
+        {
+          "id": 7,
+          "name": "退货单列表",
+          "pathName": "pages/backOrderList/index",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "登录",
+          "pathName": "pages/login/index",
+          "query": ""
+        },
+        {
+          "id": 9,
+          "name": "首页",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": 1047
+        },
+        {
+          "id": -1,
+          "name": "退货订单",
+          "pathName": "pages/orderDetailList/index",
+          "query": "orderType=03&orderID=1547"
+        },
+        {
+          "id": -1,
+          "name": "pages/reviewOrder/index",
+          "pathName": "pages/reviewOrder/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/preorder/index",
+          "pathName": "pages/preorder/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/account/index",
+          "pathName": "pages/account/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/heroOrderList/index",
+          "pathName": "pages/heroOrderList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 15,
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/contactsManager/index",
+          "pathName": "pages/contactsManager/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "subPackages/reserve/pages/index/index",
+          "pathName": "subPackages/reserve/pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 19,
+          "name": "pages/message/index",
+          "pathName": "pages/message/index",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
 }

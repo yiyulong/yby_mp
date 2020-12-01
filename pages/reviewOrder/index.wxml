@@ -1,6 +1,9 @@
 <view class="tabContainer">
   <my-tabs tab-list="{{tabs}}" bind:change="tabChange" default-index="{{active}}"></my-tabs>
 </view>
+<view class="searchContainer">
+  <van-search value="{{ searchVal }}" placeholder="请输入搜索关键词" shape="round" bind:search="_search" />
+</view>
 <view hidden="{{active !== 0}}">
   <view class="summary van-hairline--top-bottom">
     <text>总订量：{{orderList_all.summary.totalQty}}</text>

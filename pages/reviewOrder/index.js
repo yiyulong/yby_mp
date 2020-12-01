@@ -11,7 +11,8 @@ Page({
         loadDone: false,
         loadText: '加载中...',
         label: '全部',
-        value: 0
+        value: 0,
+        searchVal: ''
       }, {
         scrollTop: 0,
         pageNo: 1,
@@ -20,7 +21,8 @@ Page({
         loadText: '加载中...',
         label: '待审核',
         value: 1,
-        checkedId: null // 单选按钮选中的id
+        checkedId: null, // 单选按钮选中的id
+        searchVal: ''
       }, {
         scrollTop: 0,
         pageNo: 1,
@@ -29,7 +31,8 @@ Page({
         loadText: '加载中...',
         label: '已审核',
         value: 1,
-        checkedId: null
+        checkedId: null,
+        searchVal: ''
       }
     ],
     orderList_all: {
@@ -57,6 +60,7 @@ Page({
       resultList: [],
       fields: []
     },
+    searchVal: ''
   },
   onLoad () {
   },
@@ -68,6 +72,16 @@ Page({
       })
     } */
     this.getList()
+  },
+  _search ({ detail }) {
+    console.log(detail)
+    let keyPageNum = `tabs[${this.data.active}].pageNo`
+    let keySearchVal = `tabs[${this.data.active}].searchVal`
+    this.setData({
+      [keyPageNum]: 1,
+      [keySearchVal]: detail
+    })
+    this.getList(detail)
   },
   /**
    * TODO 上拉加载
@@ -83,7 +97,7 @@ Page({
   /**
    * @param dataType WAIT_APPROVE/IN_APPROVE/APPROVED，空值或不传值显示全部
    */
-  getList () {
+  getList (searchCondition = '') {
     let objKey = 'orderList_'
     switch (this.data.active) {
       case 1:
@@ -101,7 +115,8 @@ Page({
       url: config.getApprovalOrderList,
       params: {
         pageNo: pageNo,
-        dataType: types[this.data.active]
+        dataType: types[this.data.active],
+        searchCondition
       }
     }
     app.nGet(paramData).then(({data}) => {
@@ -141,7 +156,11 @@ Page({
       this.setData({ [key]: res.scrollTop })  // 保存切换前页面滚动高度
     }).exec()
     let active = e.detail.index
-    this.setData({ active });
+    let searchVal = this.data.tabs[active].searchVal
+    this.setData({
+      active,
+      searchVal
+    })
     wx.pageScrollTo({ // 跳转到之前保留的滚动位置
       scrollTop: this.data.tabs[active].scrollTop,
       duration: 0

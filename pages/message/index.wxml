@@ -1,36 +1,36 @@
-<van-skeleton title row="4" loading="{{ loading }}">
-  <block wx:if="{{ result.length }}">
-    <view class="container">
-      <block wx:for="{{ result }}" wx:key="id">
-        <view class="content">
-          <view class="content-item">
-            <view class="title">{{ userType === 'BU' ? '审核结果通知' : '工单状态变更提醒' }}</view>
-            <van-divider custom-style="margin: 10rpx 0;" />
-            <view class="info">
-              <view class="line_1">
-                <text class="label">{{ item.notifyObjectTitle }}：</text>
-                <text class="value">{{ item.notifyObject }}</text>
-              </view>
-              <view class="line_2">
-                <text class="label">{{ item.resultTitle }}：</text>
-                <text class="value">{{ item.result }}</text>
-              </view>
-              <view class="line_3">
-                <text class="label">{{ item.notifyDateStrTitle }}：</text>
-                <text class="value">{{ item.notifyDateStr }}</text>
-              </view>
-              <view class="line_4" style="order: {{ userType === 'BU' ? 0 : 4 }}">
-                <text class="label">{{ item.contentTitle }}：</text>
-                <text class="value">{{ item.content }}</text>
-              </view>
+<block wx:if="{{ result.length }}">
+  <view class="container">
+    <block wx:for="{{ result }}" wx:key="id">
+      <view class="content">
+        <view class="content-item">
+          <view class="title">{{ userType === 'BU' ? '审核结果通知' : '工单状态变更提醒' }}</view>
+          <van-divider custom-style="margin: 10rpx 0;" />
+          <view class="info">
+            <view class="line_1">
+              <text class="label">{{ item.notifyObjectTitle }}：</text>
+              <text class="value">{{ item.notifyObject }}</text>
+            </view>
+            <view class="line_2">
+              <text class="label">{{ item.resultTitle }}：</text>
+              <text class="value">{{ item.result }}</text>
+            </view>
+            <view class="line_3">
+              <text class="label">{{ item.notifyDateStrTitle }}：</text>
+              <text class="value">{{ item.notifyDateStr }}</text>
+            </view>
+            <view class="line_4" style="order: {{ userType === 'BU' ? 0 : 4 }}">
+              <text class="label">{{ item.contentTitle }}：</text>
+              <text class="value">{{ item.content }}</text>
             </view>
           </view>
         </view>
-      </block>
-    </view>
-    <my-load-more load-done="{{ loadDone }}" text="{{ title }}" />
-  </block>
-  <block wx:else>
-    <van-empty />
-  </block>
-</van-skeleton>
+      </view>
+    </block>
+  </view>
+  <van-skeleton title row="4" loading="{{ loading }}">
+  </van-skeleton>
+  <my-load-more load-done="{{ loadDone }}" text="{{ title }}" />
+</block>
+<block wx:else>
+  <van-empty />
+</block>

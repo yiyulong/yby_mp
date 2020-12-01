@@ -4,6 +4,7 @@ Page {
   padding-bottom: env(safe-area-inset-bottom);
   padding-top: 160rpx;
   background-color: #f7f7f7;
+  --search-padding: 4px 12px;
 }
 .tabContainer {
   position: fixed;
@@ -11,6 +12,15 @@ Page {
   left: 0;
   width: 100%;
   z-index: 3;
+}
+.searchContainer {
+  position: fixed;
+  top: 160rpx;
+  left: 0;
+  width: 100%;
+}
+.searchContainer ~ view {
+  margin-top: 42px;
 }
 .listItem {
   padding: 5px 15px;

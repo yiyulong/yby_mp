@@ -55,7 +55,7 @@
               <van-stepper
                 value="{{item.qty}}"
                 min="{{0}}"
-                max="{{item.store}}"
+                max="{{orderStatus !== 'REJECTED' && orderStatus !== 'NEW' ? item.qty : item.store}}"
                 size="small" data-idx="{{idx}}"
                 integer
                 disabled="{{ orderStatus !== 'REJECTED' && orderStatus !== 'NEW' }}"

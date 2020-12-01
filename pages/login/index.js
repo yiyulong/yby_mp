@@ -80,6 +80,9 @@ Page({
                         setTimeout(() => {
                           _this._jump()
                         }, 1500)
+                      },
+                      fail (err) {
+                        console.log(err)
                       }
                     })
                   } else if (res.cancel) {
@@ -130,6 +133,7 @@ Page({
     })
   },
   _jump () {
+    console.log(getCurrentPages())
     if (getCurrentPages().length > 1) {
       wx.navigateBack()
     } else {

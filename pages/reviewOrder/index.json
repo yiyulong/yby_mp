@@ -11,6 +11,7 @@
     "van-radio": "vant-weapp/radio",
     "van-radio-group": "vant-weapp/radio-group",
     "my-load-more": "/components/my-load-more/index",
-    "van-toast": "@vant/weapp/toast/index"
+    "van-toast": "@vant/weapp/toast/index",
+    "van-search": "@vant/weapp/search/index"
   }
 }
