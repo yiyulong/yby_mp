@@ -1,6 +1,8 @@
 // pages/login/index.js
 const app = getApp();
 import config from '../../config.js';
+import { removeToken } from '../../utils/userTokenCache'
+
 
 Page({
 
@@ -71,6 +73,7 @@ Page({
   },
   /* 确更改密码 */
   changePassword () {
+    const _this = this
     if (this.data.newPassword.value !== this.data.confirmNewPassword.value) return
     const data = {
       url: config.changePassword,
@@ -80,18 +83,18 @@ Page({
         confirmNewPassword: this.data.confirmNewPassword.value
       }
     }
-    console.log(data)
+    // console.log(data)
     app.nPost(data).then(res => {
-      console.log(res)
+      // console.log(res)
       wx.showModal({
         title: '提示',
         content: '修改成功请重新登陆',
         showCancel: false,
         success: (res) => {
-          console.log(res)
+          // console.log(res)
           if (res.confirm) {
             console.log('用户点击确定')
-            this.logout()
+            _this.logout()
           }
         }
       })
@@ -202,20 +205,21 @@ Page({
   /**
    * 退出
    */
-  logout() {
+  async logout() {
+    try {
       var data = {
         url: config.logout,
         params: {}
       }
-      app.nGet(data).then(res => {
-        app.showMsg("退出成功");
-        app.clearValue()
-        // wx.navigateBack();
-        wx.reLaunch({
-          url: '/pages/login/index',
-        })
-      }, res => {
-        // console.error(res);
-      });
+      await app.nGet(data)
+    } catch (error) {
+      console.log(error)
     }
+    app.clearValue()
+    removeToken()
+    // wx.navigateBack();
+    wx.reLaunch({
+      url: '/pages/login/index',
+    })
+  }
 })

@@ -1,20 +1,34 @@
+import { getToken } from '../utils/userTokenCache'
+
 // const baseUrl = 'http://120.24.29.201:8080/trendfinder'
 const baseUrl = 'https://yesbyyesir.dlt-world.com'
 // const baseUrl = 'https://cmst.dlt-world.com/yby'
-function getCommonHeader () {
-
+async function getCommonHeader () {
   let header = {
     'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
   }
-
   // 如果sessionKey有值则带上
   let sessionKey = wx.getStorageSync("sessionKey")
-  if (sessionKey) {
-    header = Object.assign({}, header, {
-      'session-Token': sessionKey
-    })
-  }
-
+  if (!sessionKey) {
+    try {
+      const userCacheStr = await getToken()
+      const userCache = JSON.parse(userCacheStr)
+      wx.setStorageSync('username', userCache.username);
+      wx.setStorageSync('uid', userCache.uid);
+      wx.setStorageSync('sessionKey', userCache.sessionToken);
+      wx.setStorageSync('productMode', userCache.productMode);
+      wx.setStorageSync('orderListHeader', userCache.orderListHeader) // 订单头部tab
+      wx.setStorageSync('role', userCache.role) // 判断用户身份
+      // wx.setStorageSync('isNeedWxLogin', userCache.isNeedWxLogin) // 后台是否已经获取到openid
+      wx.setStorageSync('expressWay', userCache.expressWay) // 快递方式
+      wx.setStorageSync('expressWayDesc', userCache.expressWayDesc)
+    } catch (err) {
+      console.log(err)
+    }
+   }
+   header = Object.assign({}, header, {
+    'session-Token': sessionKey || ''
+  })
   return header
 }
 
@@ -45,17 +59,19 @@ function request (url, data = {}, method = "POST", config = {}) {
     loadingTitle = config['loadingTitle']
   }
 
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     // 是否显示loading
     if (showLoading) {
       wx.showLoading({ title: loadingTitle, icon: 'none', mask: true })
     }
-
+    const header = await getCommonHeader().catch(err => {
+      console.log(err)
+    })
     wx.request({
-      url: url,
-      data: data,
-      header: getCommonHeader(),
-      method: method,
+      url,
+      data,
+      header,
+      method,
       success: ({ cookies, data, errMsg, header, statusCode }) => {
 
         // 服务器 非200 错误

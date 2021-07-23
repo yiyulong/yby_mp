@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp()
 import { login } from '../../ajax/user'
+import { saveToken } from '../../utils/userTokenCache'
 
 Page({
   data: {
@@ -36,6 +37,7 @@ Page({
       // wx.setStorageSync('isNeedWxLogin', res.isNeedWxLogin) // 后台是否已经获取到openid
       wx.setStorageSync('expressWay', res.expressWay) // 快递方式
       wx.setStorageSync('expressWayDesc', res.expressWayDesc)
+      saveToken(JSON.stringify(res))
       app.getUserOpenId(true).then(() => {
         const tmplIds = ['PPkMjx3zcS7CAUrW9YCkLtlLb0h7ON3--LJSa8Sqcyw', 'bwnMpNCY0OOMCOh_R9cHerG1rMS8U9tb9lpYtnipob4']
         wx.getSetting({
@@ -133,8 +135,11 @@ Page({
     })
   },
   _jump () {
-    console.log(getCurrentPages())
-    if (getCurrentPages().length > 1) {
+    // console.log(getCurrentPages())
+    const pages = getCurrentPages(),
+      prePage = pages[pages.length - 2]
+    if (pages.length >= 2 && prePage.route.split(/\//).indexOf('login') < 0) {
+      prePage.onLoad(prePage.options)
       wx.navigateBack()
     } else {
       wx.switchTab({

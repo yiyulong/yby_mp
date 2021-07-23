@@ -2,6 +2,7 @@
 const app = getApp();
 import config from '../../config.js';
 var WxParse = require('../../common/lib/wxParse/wxParse.js');
+import { removeToken } from '../../utils/userTokenCache'
 
 Page({
 
@@ -71,6 +72,7 @@ Page({
     })
   },
   checkLogin() {
+    const _this = this
     if (this.data.userName) {
       wx.showActionSheet({
         itemList: ['修改密码', '退出登陆'],
@@ -82,18 +84,7 @@ Page({
               })
               break
             case 1:
-              var data = {
-                url: config.logout,
-                params: {}
-              }
-              app.nGet(data).then(res => {
-                app.clearValue()
-                wx.reLaunch({
-                  url: '/pages/login/index',
-                })
-              }, err => {
-                // console.error(err)
-              })
+              _this._logout()
               break
           }
         },
@@ -228,6 +219,22 @@ Page({
   onClickLeft() {
     wx.navigateTo({
       url: '/pages/message/index'
+    })
+  },
+  async _logout () {
+    try {
+      var data = {
+        url: config.logout,
+        params: {}
+      }
+      await app.nGet(data)
+    } catch (error) {
+      console.log(error)
+    }
+    app.clearValue()
+    removeToken()
+    wx.reLaunch({
+      url: '/pages/login/index',
     })
   }
 })

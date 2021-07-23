@@ -317,5 +317,10 @@ Page({
       'allInfo.page': Number(this.data.allInfo.page) + 1
     })
     this.getPdtList({})
+  },
+  onShareAppMessage () {
+    return {
+      path: '/pages/home/index'
+    }
   }
 })

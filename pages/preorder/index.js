@@ -1,6 +1,6 @@
-// pages/orderList/index.js
 const app = getApp();
-import config from '../../config.js';
+import config from '../../config'
+import { debounce } from '../../utils/fnOptimiz'
 
 Page({
 
@@ -8,80 +8,79 @@ Page({
    * 页面的初始数据
    */
   data: {
-    page: 1,
-    size: 20,
+    _page: 1,
     list: [],
     loadDone: false,
     loadText: '正在加载',
     active: 0,
     tabs: [
       {
-        scrollTop: 0,
         label: '未读',
         value: 0
       }, {
-        scrollTop: 0,
         label: '已读',
         value: 1
       }, {
-        scrollTop: 0,
         label: '全部',
         value: 2
       }
     ],
     showDetail: false, // 是否显示详情
+    queryResultTips: '',
     detailImage: '',
     detailArr: [], // 当前详情color数组
     preorderInfo: {}, // 储存请求过的详情
+    triggered: false,
   },
 
   onLoad: function () {
-    this.getList()
+    this._getList()
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-    if (this.data.loadDone) return
-    this.setData({
-      page: this.data.page + 1
-    })
-    this.getList()
+  _onRefresh () {
+    // console.log('_onRefresh')
+    this.data._page = 1
+    this._getList()
   },
+  // TODO 上拉加载
+  _loadMore: debounce(function (e) {
+    // console.log('_loadMore')
+    if (this.data.noMore || this.data.active === 1) return
+      this.data._page = this.data._page + 1
+      this._getList()
+  }, 1000, true),
   /**
    * TODO 顶部tab切换
    * @param {e} e 
    */
   tabChange(e) {
-    const query = wx.createSelectorQuery(),
-      index = this.data.active  // 获取切换前的tab下标
-    query.selectViewport().scrollOffset(res => {
-      // console.log(res)
-      const key = `tabs[${index}].scrollTop`
-      this.setData({ [key]: res.scrollTop })  // 保存切换前页面滚动高度
-    }).exec()
+    // const query = wx.createSelectorQuery(),
+    //   index = this.data.active  // 获取切换前的tab下标
+    // query.selectViewport().scrollOffset(res => {
+    //   // console.log(res)
+    //   const key = `tabs[${index}].scrollTop`
+    //   this.setData({ [key]: res.scrollTop })  // 保存切换前页面滚动高度
+    // }).exec()
+    // wx.pageScrollTo({ // 跳转到之前保留的滚动位置
+    //   scrollTop: this.data.tabs[active].scrollTop,
+    //   duration: 0
+    // })
     let active = e.detail.index
     this.setData({ active });
-    wx.pageScrollTo({ // 跳转到之前保留的滚动位置
-      scrollTop: this.data.tabs[active].scrollTop,
-      duration: 0
-    })
   },
   itemClick (e) {
     // console.log(e.detail)
-    const { stylename, image, id } = e.detail
+    const { styleName, image, id } = e.detail
     this.setData({
       showDetail: true,
       detailImage: image
     })
-    if(this.data.preorderInfo[stylename]) {
+    if(this.data.preorderInfo[styleName]) {
       this.setData({
-        detailArr: this.data.preorderInfo[stylename]
+        detailArr: this.data.preorderInfo[styleName]
       })
       return // 如果请求多就不再发送请求
     }
-    this.readNotice(id, stylename)
+    this.readNotice(id, styleName)
   },
   itemClose () {
     this.setData({
@@ -91,20 +90,20 @@ Page({
   /**
    * TODO 获取
    */
-  getList () {
-    let params = {
+  _getList () {
+    const params = {
       url: config.getArrivalNoticeList,
       params: {
-        page: this.data.page,
-        size: this.data.size
+        page: this.data._page,
+        size: 60
       }
     }
     app.nGet(params).then(({data}) => {
       if (data && data.list) {
         const {page, pages, list: resList} = data
         let list = resList
-        if (this.data.page !== 1) {
-          list = [this.data.list, ...list]
+        if (this.data._page > 1) {
+          list = [...this.data.list, ...list]
         }
         this.setData({
           list,
@@ -118,17 +117,19 @@ Page({
         })
       }
     }).catch(err => {
-      console.log(err)
+      // console.log(err)
       this.setData({
         loadDone: true,
         loadText: '获取失败'
       })
+    }).finally (() => {
+      this.setData({ triggered: false })
     })
   },
   /**
    * 读取到货通知
    */
-  readNotice (id, stylename) {
+  readNotice (id, styleName) {
     if (this.data.queryResultTips) { // 清空上次请求结果提示消息
       this.setData({queryResultTips: ''})
     }
@@ -136,12 +137,12 @@ Page({
       url: config.getArrivalNotice,
       params: {
         userId: id,
-        stylename: stylename
+        stylename: styleName
       }
     }
     app.nGet(params).then(({ data }) => {
       // console.log(data)
-      const index = this.data.list.findIndex(item => item.stylename === item.stylename)
+      const index = this.data.list.findIndex(item => item.styleName === styleName && item.id === id)
       if (index !== -1) {
         const key = `list[${index}].isRead`
         // 设置为已读
@@ -149,7 +150,7 @@ Page({
           [key]: 1
         })
       }
-      const key = `preorderInfo.${stylename}`
+      const key = `preorderInfo.${styleName}`
       this.setData({
         [key]: data,
         detailArr: data
@@ -160,7 +161,7 @@ Page({
         })
       }
     }).catch(err => {
-      console.log(err)
+      // console.log(err)
       this.setData({
         queryResultTips: '加载失败！'
       })

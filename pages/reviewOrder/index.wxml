@@ -7,7 +7,7 @@
 <view hidden="{{active !== 0}}">
   <view class="summary van-hairline--top-bottom">
     <text>总订量：{{orderList_all.summary.totalQty}}</text>
-    <text>总价格；{{orderList_all.summary.totalPricelist}}</text>
+    <text>总价格：{{orderList_all.summary.totalPricelist}}</text>
   </view>
   <view wx:for="{{orderList_all.resultList}}" wx:key="index" class="listItem">
     <product-cell prodata="{{item}}" class="pdtcell"></product-cell>
@@ -34,7 +34,7 @@
 <view hidden="{{active !== 2}}">
   <view class="summary van-hairline--top-bottom">
     <text>总订量：{{orderList_ed.summary.totalQty}}</text>
-    <text>总价格；{{orderList_ed.summary.totalPricelist}}</text>
+    <text>总价格：{{orderList_ed.summary.totalPricelist}}</text>
   </view>
   <van-radio-group value="{{tabs[active].checkedId}}" bindchange="radioChange">
     <view wx:for="{{orderList_ed.resultList}}" wx:key="index" class="listItem">

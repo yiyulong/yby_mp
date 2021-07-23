@@ -9,5 +9,6 @@
     "preorder-content": "/components/preorder-content/index",
     "van-dialog": "vant-weapp/dialog",
     "preorder-info": "/components/preorder-info/index"
-  }
+  },
+  "disableScroll": true
 }

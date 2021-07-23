@@ -1,184 +1,203 @@
 <!--index.wxml-->
 <import src="/template/titleGroup.wxml" />
-<!-- tabbar -->
-<view class="index-tab van-hairline--top-bottom">
-  <view class="my-tabs">
-    <block wx:for="{{tabList}}" wx:key="index">
-      <view
-        class="my-tabs-item tab-class {{index === tabIndex ? 'active tab-active-class' : ''}}"
-        data-index="{{index}}"
-        bind:tap="_tabChange"
-      >
-        <text>{{item.label}}</text>
-      </view>
-    </block>
+<view class="index-page">
+  <!-- tabbar -->
+  <view class="index-tab">
+    <view class="my-tabs">
+      <block wx:for="{{tabList}}" wx:key="index">
+        <view
+          class="my-tabs-item tab-class {{index === tabIndex ? 'active tab-active-class' : ''}}"
+          data-index="{{index}}"
+          bind:tap="_tabChange"
+        >
+          <text>{{item.label}}</text>
+        </view>
+      </block>
+    </view>
   </view>
-</view>
-<view class="index-content">
-  <swiper duration="{{ 300 }}" current="{{ swiperIndex }}" bindchange="_swiperChange">
-    <swiper-item>
-      <!-- 首页 -->
-      <scroll-view scroll-y enable-back-to-top>
-        <view class="home-box">
-          <view class="swiper-container">
-            <swiper
-              class="carousel-swiper"
-              indicator-dots="{{ carouselList && carouselList.length > 1 }}"
-              autoplay
-              circular>
-              <block wx:for="{{ carouselList }}" wx:key="id">
-                <swiper-item bindtap="_jumpUrl" data-item="{{ item }}">
-                  <image mode="aspectFill" src="{{ item.image }}" class="carousel-image"/>
-                </swiper-item>
-              </block>
-            </swiper>
-          </view>
-          <!-- 时装系列 -->
-          <view class="fashion-container">
-            <view class="title-content">
-              <template is="titleGroup" data="{{ ...orderBatchInfo }}" />
-            </view>
-            <view class="main-content">
-              <van-row gutter="10">
-                <block wx:for="{{ orderBatchInfo.resultList }}" wx:key="index">
-                  <van-col span="12">
-                    <view
-                      class="fashion-item {{ item.isArrivalNotice ? 'active': '' }}"
-                      data-is-arrival-notice="{{ item.isArrivalNotice }}"
-                      data-type="{{ orderBatchInfo.type }}"
-                      data-id="{{ item.id }}"
-                      bind:tap="_jumpPdt"
-                    >
-                      <view class="img-content">
-                        <image mode="aspectFill" src="{{ item.pictureUrl }}" />
-                      </view>
-                      <view class="title">{{ item.title }}</view>
-                      <view class="subTitle"><text>{{ item.subTitle }}</text></view>
-                    </view>
-                  </van-col>
+  <view class="index-content">
+    <swiper duration="{{ 300 }}" current="{{ swiperIndex }}" bindchange="_swiperChange">
+      <swiper-item>
+        <!-- 首页 -->
+        <scroll-view scroll-y enable-back-to-top>
+          <view class="home-box">
+            <view class="swiper-container">
+              <swiper
+                class="carousel-swiper"
+                indicator-dots="{{ carouselList && carouselList.length > 1 }}"
+                autoplay
+                circular>
+                <block wx:for="{{ carouselList }}" wx:key="id">
+                  <swiper-item bindtap="_jumpUrl" data-item="{{ item }}">
+                    <image mode="aspectFill" src="{{ item.image }}" class="carousel-image"/>
+                  </swiper-item>
                 </block>
-              </van-row>
+              </swiper>
             </view>
-          </view>
-          <!-- 精选分类 -->
-          <view class="category-container">
-            <view class="title-content">
-              <template is="titleGroup" data="{{ ...choicenessAttributeInfo }}" />
-            </view>
-            <view class="main-content">
-              <view class="left-section">
-                <view
-                  class="category-item"
-                  data-id="{{ choicenessAttributeInfo_main.id }}"
-                  data-type="{{ choicenessAttributeInfo.type }}"
-                  bind:tap="_jumpPdt"
-                >
-                  <view class="img-content">
-                    <image lazy-load mode="aspectFill" src="{{ choicenessAttributeInfo_main.pictureUrl }}" />
-                  </view>
-                  <view class="title">{{ choicenessAttributeInfo_main.attributeName }}</view>
-                </view>
+            <!-- 时装系列 -->
+            <view class="fashion-container">
+              <view class="title-content">
+                <template is="titleGroup" data="{{ ...orderBatchInfo }}" />
               </view>
-              <view class="right-section">
-                <view class="outWrap">
-                  <block wx:for="{{ choicenessAttributeInfo_rest }}" wx:key="index">
-                    <view class="inWrap">
+              <view class="main-content">
+                <!-- <van-row gutter="10">
+                  <block wx:for="{{ orderBatchInfo.resultList }}" wx:key="index">
+                    <van-col span="12">
                       <view
-                        class="category-item"
+                        class="fashion-item {{ item.isArrivalNotice ? 'active': '' }}"
+                        data-is-arrival-notice="{{ item.isArrivalNotice }}"
+                        data-type="{{ orderBatchInfo.type }}"
                         data-id="{{ item.id }}"
-                        data-type="{{ choicenessAttributeInfo.type }}"
                         bind:tap="_jumpPdt"
                       >
                         <view class="img-content">
-                          <image lazy-load mode="aspectFill" src="{{ item.pictureUrl }}" />
+                          <image mode="widthFix" src="{{ item.pictureUrl }}" />
                         </view>
-                        <view class="title">{{ item.attributeName }}</view>
+                        <view class="title">{{ item.title }}</view>
+                        <view class="subTitle"><text>{{ item.subTitle }}</text></view>
+                      </view>
+                    </van-col>
+                  </block>
+                </van-row> -->
+                <view class="fashion-row">
+                  <block wx:for="{{ orderBatchInfo.resultList }}" wx:key="index">
+                    <view class="fashion-col">
+                      <view
+                        class="fashion-item {{ item.isArrivalNotice ? 'active': '' }}"
+                        data-is-arrival-notice="{{ item.isArrivalNotice }}"
+                        data-type="{{ orderBatchInfo.type }}"
+                        data-id="{{ item.id }}"
+                        bind:tap="_jumpPdt"
+                      >
+                        <view class="img-content">
+                          <image mode="widthFix" src="{{ item.pictureUrl }}" />
+                        </view>
                       </view>
                     </view>
                   </block>
                 </view>
               </view>
             </view>
+            <!-- 精选分类 -->
+            <view class="category-container">
+              <view class="title-content">
+                <template is="titleGroup" data="{{ ...choicenessAttributeInfo }}" />
+              </view>
+              <view class="main-content">
+                <view class="left-section">
+                  <view
+                    class="category-item"
+                    data-id="{{ choicenessAttributeInfo_main.id }}"
+                    data-type="{{ choicenessAttributeInfo.type }}"
+                    bind:tap="_jumpPdt"
+                  >
+                    <view class="img-content">
+                      <image lazy-load mode="aspectFill" src="{{ choicenessAttributeInfo_main.pictureUrl }}" />
+                    </view>
+                    <view class="title">{{ choicenessAttributeInfo_main.attributeName }}</view>
+                  </view>
+                </view>
+                <view class="right-section">
+                  <view class="outWrap">
+                    <block wx:for="{{ choicenessAttributeInfo_rest }}" wx:key="index">
+                      <view class="inWrap">
+                        <view
+                          class="category-item"
+                          data-id="{{ item.id }}"
+                          data-type="{{ choicenessAttributeInfo.type }}"
+                          bind:tap="_jumpPdt"
+                        >
+                          <view class="img-content">
+                            <image lazy-load mode="aspectFill" src="{{ item.pictureUrl }}" />
+                          </view>
+                          <view class="title">{{ item.attributeName }}</view>
+                        </view>
+                      </view>
+                    </block>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <!-- 精选商品信息 -->
+            <block wx:for="{{ choicenessProductInfo.resultList }}" wx:key="index">
+              <view class="choiceness-container">
+                <view class="title-content">
+                  <template is="titleGroup" data="{{ ...item }}" />
+                </view>
+                <view class="carousel-content" wx:if="{{ item.pictureUrlList && item.pictureUrlList.length }}">
+                  <swiper
+                    class="carousel-swiper"
+                    indicator-dots="{{ item.pictureUrlList && item.pictureUrlList.length > 1 }}"
+                    autoplay
+                    circular>
+                    <block wx:for="{{ item.pictureUrlList }}" wx:for-index="swiperIndex" wx:for-item="swiperItem" wx:key="swiperIndex">
+                      <swiper-item
+                        class="carousel-swiper-item"
+                        data-id="{{ item.id }}"
+                        data-type="{{ choicenessProductInfo.type }}"
+                        bind:tap="_jumpPdt"
+                      >
+                        <image lazy-load mode="aspectFill" src="{{ swiperItem }}" class="carousel-image"/>
+                        <text class="moreDetail" wx:if="{{ item.btnText }}">{{ item.btnText }}</text>
+                      </swiper-item>
+                    </block>
+                  </swiper>
+                </view>
+                <view class="product-content" wx:if="{{ item.productList && item.productList.length }}">
+                  <van-row gutter="7">
+                    <block wx:for="{{ item.productList }}" wx:for-item="pdtItem" wx:for-index="pdtIndex" wx:key="pdtIndex">
+                      <van-col span="12">
+                        <pdt-item pdt="{{ pdtItem }}" custom-class="pdtItem" />
+                      </van-col>
+                    </block>
+                  </van-row>
+                </view>
+              </view>
+            </block>
+            <!-- pdf信息 -->
+            <block wx:for="{{ pdfProfileInfo }}" wx:key="index">
+              <view class="pdf-container">
+                <view class="title-content">
+                  <template is="titleGroup" data="{{ ...item }}" />
+                </view>
+                <view class="carousel-content">
+                  <swiper
+                    class="carousel-swiper {{ index === choicenessProductInfo.resultList.length -1 ? 'last': '' }}"
+                    indicator-dots="{{ item.pictureUrlList && item.pictureUrlList.length > 1 }}"
+                    autoplay
+                    circular>
+                    <block wx:for="{{ item.pictureUrlList }}" wx:for-index="swiperIndex" wx:for-item="swiperItem" wx:key="swiperIndex">
+                      <swiper-item
+                        class="carousel-swiper-item"
+                        data-url="{{ item.pdfUrl }}"
+                        data-id="{{ item.id }}"
+                        data-exist-sub="{{ item.existSub }}"
+                        bind:tap="_jumpPdf"
+                      >
+                        <image lazy-load mode="widthFix" src="{{ swiperItem }}" class="carousel-image"/>
+                        <text class="moreDetail" wx:if="{{ item.btnText }}">{{ item.btnText }}</text>
+                      </swiper-item>
+                    </block>
+                  </swiper>
+                </view>
+              </view>
+            </block>
           </view>
-          <!-- 精选商品信息 -->
-          <block wx:for="{{ choicenessProductInfo.resultList }}" wx:key="index">
-            <view class="choiceness-container">
-              <view class="title-content">
-                <template is="titleGroup" data="{{ ...item }}" />
-              </view>
-              <view class="carousel-content" wx:if="{{ item.pictureUrlList && item.pictureUrlList.length }}">
-                <swiper
-                  class="carousel-swiper"
-                  indicator-dots="{{ item.pictureUrlList && item.pictureUrlList.length > 1 }}"
-                  autoplay
-                  circular>
-                  <block wx:for="{{ item.pictureUrlList }}" wx:for-index="swiperIndex" wx:for-item="swiperItem" wx:key="swiperIndex">
-                    <swiper-item
-                      class="carousel-swiper-item"
-                      data-id="{{ item.id }}"
-                      data-type="{{ choicenessProductInfo.type }}"
-                      bind:tap="_jumpPdt"
-                    >
-                      <image lazy-load mode="aspectFill" src="{{ swiperItem }}" class="carousel-image"/>
-                      <text class="moreDetail" wx:if="{{ item.btnText }}">{{ item.btnText }}</text>
-                    </swiper-item>
-                  </block>
-                </swiper>
-              </view>
-              <view class="product-content" wx:if="{{ item.productList && item.productList.length }}">
-                <van-row gutter="7">
-                  <block wx:for="{{ item.productList }}" wx:for-item="pdtItem" wx:for-index="pdtIndex" wx:key="pdtIndex">
-                    <van-col span="12">
-                      <pdt-item pdt="{{ pdtItem }}" custom-class="pdtItem" />
-                    </van-col>
-                  </block>
-                </van-row>
-              </view>
-            </view>
-          </block>
-          <!-- pdf信息 -->
-          <block wx:for="{{ pdfProfileInfo }}" wx:key="index">
-            <view class="pdf-container">
-              <view class="title-content">
-                <template is="titleGroup" data="{{ ...item }}" />
-              </view>
-              <view class="carousel-content">
-                <swiper
-                  class="carousel-swiper {{ index === choicenessProductInfo.resultList.length -1 ? 'last': '' }}"
-                  indicator-dots="{{ item.pictureUrlList && item.pictureUrlList.length > 1 }}"
-                  autoplay
-                  circular>
-                  <block wx:for="{{ item.pictureUrlList }}" wx:for-index="swiperIndex" wx:for-item="swiperItem" wx:key="swiperIndex">
-                    <swiper-item
-                      class="carousel-swiper-item"
-                      data-url="{{ item.pdfUrl }}"
-                      data-id="{{ item.id }}"
-                      data-exist-sub="{{ item.existSub }}"
-                      bind:tap="_jumpPdf"
-                    >
-                      <image lazy-load mode="widthFix" src="{{ swiperItem }}" class="carousel-image"/>
-                      <text class="moreDetail" wx:if="{{ item.btnText }}">{{ item.btnText }}</text>
-                    </swiper-item>
-                  </block>
-                </swiper>
-              </view>
-            </view>
-          </block>
-        </view>
-      </scroll-view>
-    </swiper-item>
-    <swiper-item>
-      <!-- 全部 -->
-      <scroll-view scroll-y enable-back-to-top bindscrolltolower="_loadMore">
-        <van-search shape="round" placeholder="搜索您想要的商品" bind:search="_searchDone" />
-        <one-cell-four-icon wx:if="{{ categoryList.length }}" items="{{categoryList}}"></one-cell-four-icon>
-        <pdt-list gutter="10" span="8" list="{{ allInfo.list }}" />
-        <my-load-more text="{{allLoadMore.title}}" load-done="{{allLoadMore.loadDone}}" />
-      </scroll-view>
-    </swiper-item>
-    <swiper-item>
-      <!-- 筛选 -->
-      <scroll-view scroll-y enable-back-to-top><filter-item datas="{{attrsList}}"></filter-item></scroll-view>
-    </swiper-item>
-  </swiper>
+        </scroll-view>
+      </swiper-item>
+      <swiper-item>
+        <!-- 全部 -->
+        <scroll-view scroll-y enable-back-to-top bindscrolltolower="_loadMore">
+          <van-search shape="round" placeholder="搜索您想要的商品" bind:search="_searchDone" />
+          <one-cell-four-icon wx:if="{{ categoryList.length }}" items="{{categoryList}}"></one-cell-four-icon>
+          <pdt-list gutter="10" span="8" list="{{ allInfo.list }}" />
+          <my-load-more text="{{allLoadMore.title}}" load-done="{{allLoadMore.loadDone}}" />
+        </scroll-view>
+      </swiper-item>
+      <swiper-item>
+        <!-- 筛选 -->
+        <scroll-view scroll-y enable-back-to-top><filter-item datas="{{attrsList}}"></filter-item></scroll-view>
+      </swiper-item>
+    </swiper>
+  </view>
 </view>

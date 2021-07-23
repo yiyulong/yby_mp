@@ -1,5 +1,7 @@
 const openIdUrl = require('./config').openIdUrl
 import { updateManager } from './utils/updateManager'
+import { getToken } from './utils/userTokenCache'
+
 App({
 
   onLaunch: function(opts) {
@@ -58,9 +60,27 @@ App({
   },
 
   // ======网络请求======
-  fetch: function (data, type = 'GET') {
+  fetch: async function (data, type = 'GET') {
     const _that = this;
-    let sessionKey = this.getValue('sessionKey') || '';
+    let sessionKey = this.getValue('sessionKey')
+    if (!sessionKey) {
+      try {
+        const userCacheStr = await getToken()
+        const userCache = JSON.parse(userCacheStr)
+        wx.setStorageSync('username', userCache.username);
+        wx.setStorageSync('uid', userCache.uid);
+        wx.setStorageSync('sessionKey', userCache.sessionToken);
+        wx.setStorageSync('productMode', userCache.productMode);
+        wx.setStorageSync('orderListHeader', userCache.orderListHeader) // 订单头部tab
+        wx.setStorageSync('role', userCache.role) // 判断用户身份
+        // wx.setStorageSync('isNeedWxLogin', userCache.isNeedWxLogin) // 后台是否已经获取到openid
+        wx.setStorageSync('expressWay', userCache.expressWay) // 快递方式
+        wx.setStorageSync('expressWayDesc', userCache.expressWayDesc)
+        sessionKey = userCache.sessionToken
+      } catch (err) {
+        console.log(err)
+      }
+    }
     let cityId = this.getValue('cityCode') || '310000';
     let promise = new Promise(function(resolve, reject) {
       wx.request({
@@ -69,7 +89,7 @@ App({
         method: type,
         header: {
           'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
-          'session-Token': sessionKey,
+          'session-Token': sessionKey || '',
           'city': cityId,
         },
         success: function(res) {},

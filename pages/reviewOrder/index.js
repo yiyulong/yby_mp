@@ -79,9 +79,14 @@ Page({
     let keySearchVal = `tabs[${this.data.active}].searchVal`
     this.setData({
       [keyPageNum]: 1,
-      [keySearchVal]: detail
+      [keySearchVal]: detail,
+      searchVal: detail
     })
-    this.getList(detail)
+    wx.pageScrollTo({ // 跳转到之前保留的滚动位置
+      scrollTop: 0,
+      duration: 0
+    })
+    this.getList()
   },
   /**
    * TODO 上拉加载
@@ -97,7 +102,7 @@ Page({
   /**
    * @param dataType WAIT_APPROVE/IN_APPROVE/APPROVED，空值或不传值显示全部
    */
-  getList (searchCondition = '') {
+  getList () {
     let objKey = 'orderList_'
     switch (this.data.active) {
       case 1:
@@ -116,7 +121,7 @@ Page({
       params: {
         pageNo: pageNo,
         dataType: types[this.data.active],
-        searchCondition
+        searchCondition: this.data.searchVal
       }
     }
     app.nGet(paramData).then(({data}) => {

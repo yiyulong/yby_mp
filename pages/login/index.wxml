@@ -1,8 +1,8 @@
 <!--login index.html-->
 <import src="/template/footer.wxml"></import>
-<view class="brand-name">YES BY YESIR</view>
+<!-- <view class="brand-name">YES BY YESIR</view> -->
 <view class="cover">
-  <image mode="heightFix" src="/assets/images/login_bg.png" />
+  <image mode="widthFix" src="https://yesbyyesir.dlt-world.com/img/login_bg.jpg?ver=100" />
 </view>
 <form bindsubmit="_login">
   <van-cell-group>

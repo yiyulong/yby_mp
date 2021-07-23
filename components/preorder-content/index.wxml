@@ -1,23 +1,21 @@
 <view
   wx:for="{{filterList}}"
-  wx:key="id"
+  wx:key="index"
   bind:tap="onTap"
-  data-stylename="{{item.styleName}}"
+  data-style-name="{{item.styleName}}"
   data-image="{{item.image}}"
   data-id="{{item.id}}"
   class="custom-class pre-item {{item.isRead? 'isRead' : ''}}"
   hover-class="hover">
   <view class="img-cn">
-    <image src="{{item.image}}" mode="aspectFit" lazy-load></image>
+    <image class="image" src="{{item.image}}" mode="aspectFit" lazy-load></image>
   </view>
   <view class="info-cn">
-    <view class="info info-cn_top">
-      <text>{{item.styleName}}</text>
-      <text>{{item.createdTime}}</text>
+    <view class="styleName-qty">
+      <view class="styleName">{{item.styleName}}</view>
+      <view class="qty">订量：{{item.qty}}</view>
     </view>
-    <view class="info info-cn_bottom">
-      <text>{{item.userName}}</text>
-      <text>订量：{{item.qty}}</text>
-    </view>
+    <view class="userName">{{item.userName}}</view>
+    <view class="createdTime">{{item.createdTime}}</view>
   </view>
 </view>

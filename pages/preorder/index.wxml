@@ -1,28 +1,43 @@
-<view class="preorder-tabs">
-  <my-tabs tab-list="{{tabs}}" bind:change="tabChange"></my-tabs>
-</view>
-<view class="preorder-content">
-  <block wx:for="{{tabs}}" wx:key="value">
-    <view hidden="{{active !== index}}">
-      <preorder-content
-        custom-class="preorder-content_item"
-        origin-data="{{list}}"
-        filter-type="{{item.value}}"
-        bind:itemTap="itemClick"
-        ></preorder-content>
-    </view>
-  </block>
-  <my-load-more load-done="{{loadDone}}" text="{{loadText}}"></my-load-more>
+<view class="preorder-page">
+  <view class="preorder-tabs">
+    <my-tabs tab-list="{{tabs}}" bind:change="tabChange"></my-tabs>
+  </view>
+  <view class="preorder-content">
+    <block wx:for="{{tabs}}" wx:key="value">
+      <scroll-view
+        hidden="{{active !== index}}"
+        scroll-y
+        class="scroll-view"
+        enable-back-to-top
+        refresher-enabled="{{ active !== 1 }}"
+        refresher-triggered="{{ triggered }}"
+        bindrefresherrefresh="_onRefresh"
+        bindscrolltolower="_loadMore"
+      >
+        <view>
+          <preorder-content
+            custom-class="preorder-content_item"
+            origin-data="{{list}}"
+            filter-type="{{item.value}}"
+            bind:itemTap="itemClick"
+          />
+        </view>
+        <my-load-more wx:if="{{ active !== 1 }}" load-done="{{loadDone}}" text="{{loadText}}"></my-load-more>
+      </scroll-view>
+    </block>
+  </view>
 </view>
 <van-dialog
   use-slot
   close-on-click-overlay
   show="{{showDetail}}"
+  show-confirm-button="{{ false }}"
+  transition="fade"
   bind:close="itemClose"
 >
   <preorder-info
     img-src="{{detailImage}}"
     color-list="{{detailArr}}"
     text="{{queryResultTips}}"
-  ></preorder-info>
+  />
 </van-dialog>

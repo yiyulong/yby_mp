@@ -9,28 +9,49 @@
   align-items: stertch;
 }
 .pre-item.isRead {
-  background: #f1f1f1;
+  background: #f2f2f2;
   color: #666;
 }
 .hover {
-  background: rgba(200, 200, 200, .8);
+  background: #f9f9f9;
 }
 
 .img-cn {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
 }
-.img-cn image {
+.img-cn .image {
   width: 100%;
   height: 100%;
   vertical-align: middle;
 }
 
 .info-cn {
-  font-size: 14px;
-  padding: 0 10rpx;
+  padding: 0 10rpx 0 20rpx;
   flex: 1;
 }
+.styleName-qty {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10rpx;
+}
+.styleName {
+  font-size: 14px;
+}
+.qty {
+  font-size: 12px;
+}
+.userName {
+  font-size: 12px;
+  line-height: 16px;
+}
+.createdTime {
+  font-size: 12px;
+  color: #999;
+}
+
 .info {
   display: flex;
   flex-flow: row nowrap;

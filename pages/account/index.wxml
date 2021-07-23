@@ -80,13 +80,11 @@
   </view> -->
 </view>
 <view class="bottom-content">
-  <van-cell title="我的地址" is-link custom-class="bottom-cell" title-class="bottom-cell__title" data-page-name="contactsManager" bind:click="jump"></van-cell>
-</view>
-<view class="bottom-content" wx:if="{{role === 'AU' || role === 'SUM'}}">
-  <van-cell title="预订商品" is-link custom-class="bottom-cell" title-class="bottom-cell__title" bind:click="jumpPreorder"></van-cell>
-</view>
-<view class="bottom-content" wx:if="{{role === 'AU'}}">
-  <van-cell title="审核订单" is-link custom-class="bottom-cell" title-class="bottom-cell__title" bind:click="jumpRevieworder"></van-cell>
+  <van-cell-group>
+    <van-cell title="我的地址" is-link custom-class="bottom-cell" title-class="bottom-cell__title" data-page-name="contactsManager" bind:click="jump"></van-cell>
+    <van-cell wx:if="{{role === 'AU' || role === 'SUM'}}" title="预订商品" is-link custom-class="bottom-cell" title-class="bottom-cell__title" bind:click="jumpPreorder"></van-cell>
+    <van-cell wx:if="{{role === 'AU'}}" title="审核订单" is-link custom-class="bottom-cell" title-class="bottom-cell__title" bind:click="jumpRevieworder"></van-cell>
+  </van-cell-group>
 </view>
 <!-- <view class="bottom-content" wx:if="{{role === 'AU'}}">
   <van-cell title="获取通知" custom-class="bottom-cell" title-class="bottom-cell__title" bind:click="subscrbeMessage"></van-cell>

@@ -1,21 +1,33 @@
 <view class="preorder-info">
   <view class="bg">
-    <image src="{{imgSrc}}" mode="aspectFill"></image>
+    <image class="image" src="{{imgSrc}}" mode="aspectFill"></image>
   </view>
   <view class="cn">
     <block wx:if="{{list.length}}">
-      <van-tabs active="{{ selectedId }}" bind:change="tabChange" custom-class="my-tabs" nav-class="my-nav" tab-class="my-tab" tab-active-class="my-tab-active" animated>
+      <!-- <van-tabs
+        wx:if="{{ show }}"
+        color="#000"
+        active="{{ selectedId }}"
+        bind:change="tabChange"
+        custom-class="my-tabs"
+        nav-class="my-nav"
+        tab-class="my-tab"
+        tab-active-class="my-tab-active"
+      > -->
         <block wx:for="{{list}}" wx:key="index">
-          <van-tab title="{{item.colorName}}">
+          <view class="color-box">
+            <view class="colorName">{{ item.colorName }}</view>
+          <!-- <van-tab title="{{item.colorName}}"> -->
             <view class="colorContent">
-              <view class="colorItem van-hairline--bottom" wx:for="{{item.size}}" wx:for-index="idx" wx:key="{{item.aliasId}}">
+              <view class="colorItem van-hairline--bottom" wx:for="{{item.size}}" wx:for-index="idx" wx:key="aliasId">
                 <text>{{item.sizeName}}</text>
                 <text>订量：{{item.qty}}</text>
               </view>
             </view>
-          </van-tab>
+          </view>
+          <!-- </van-tab> -->
         </block>
-      </van-tabs>
+      <!-- </van-tabs> -->
     </block>
     <block wx:else>
       <view class="cn-loading">

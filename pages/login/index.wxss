@@ -14,11 +14,12 @@ page {
 /* 封面 */
 .cover {
   margin-top: 40rpx;
-  padding: 0 30rpx;
+  /* padding: 0 30rpx; */
 }
 .cover image {
-  max-width: 100%;
-  min-height: 50vh;
+  width: 100%;
+  /* max-width: 100%;
+  min-height: 50vh; */
 }
 
 /* 登陆按钮 */

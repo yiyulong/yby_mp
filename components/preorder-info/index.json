@@ -1,8 +1,8 @@
 {
   "component": true,
   "usingComponents": {
-    "van-tab": "vant-weapp/tab",
-    "van-tabs": "vant-weapp/tabs",
-    "van-loading": "vant-weapp/loading"
+    "van-tab": "@vant/weapp/tab",
+    "van-tabs": "@vant/weapp/tabs",
+    "van-loading": "@vant/weapp/loading"
   }
 }

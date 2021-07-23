@@ -36,8 +36,8 @@ Component({
   methods: {
     onTap (e) {
       // console.log(e)
-      const { stylename, image, id } = e.currentTarget.dataset
-      this.triggerEvent('itemTap', {stylename, image, id})
+      const { styleName, image, id } = e.currentTarget.dataset
+      this.triggerEvent('itemTap', {styleName, image, id})
     }
   }
 })

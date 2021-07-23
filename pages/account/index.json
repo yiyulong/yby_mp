@@ -8,6 +8,7 @@
     "order-matrix": "/components/orderMatrix/index",
     "my-tabs": "/components/my-tabs/index",
     "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
     "van-button": "@vant/weapp/button/index",
     "van-nav-bar": "@vant/weapp/nav-bar/index",
     "van-icon": "@vant/weapp/icon/index"
