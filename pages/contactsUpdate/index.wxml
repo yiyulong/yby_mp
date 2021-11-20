@@ -24,7 +24,12 @@
 </view>
 
 <view class='butt'>
-  <button bindtap='addAddressAction'>保存</button>
+  <van-button
+    block
+    round
+    type="primary"
+    bind:click="addAddressAction"
+  >保存</van-button>
 </view>
 
 <!-- addressList 获取地址列表 -->

@@ -30,59 +30,65 @@
   </block>
 </view>
 
-<view class='butt'>
-  <view class='block block1' bindtap='checkAllAction'>
-    <view class='check'>
+<view class="butt">
+  <view class="block block1" bindtap="checkAllAction">
+    <view class="check">
       <zan-icon type="{{isCheckAll? 'checked':'check'}}"></zan-icon>
     </view>
-    <view class='msg'>
+    <view class="msg">
       <text>全选</text>
     </view>
   </view>
-  <view class='block block2'>
-    <view class='row1'>
-      <text class=''>总计:</text>
-      <text class='amount'>￥{{sumMoney}}</text>
+  <view class="block block2">
+    <view class="row1">
+      <text class="">总计:</text>
+      <text class="amount">￥{{sumMoney}}</text>
     </view>
-    <view class='row2'>
-      <text class=''>总量:</text>
-      <text class=''>{{sumCount}}</text>
+    <view class="row2">
+      <text class="">总量:</text>
+      <text class="">{{sumCount}}</text>
     </view>
   </view>
-  <view class='block block3' bindtap='calculationAction'>
+  <view class="block block3" bindtap="calculationAction">
     结算
   </view>
-  <!-- <button bindtap='calculationAction'>结算</button> -->
 </view>
 
-<pop-bottom id="popup" bind:cancel="dismissPop">
-  <view class='submit'>
-    <view class='row1'>
+<page-container
+  show="{{ show }}"
+  round
+  duration="{{ 200 }}"
+  bind:enter="_enter"
+>
+    <view class="submit">
+    <view class="row1">
       <text>总订价:{{sumMoney}}</text>
       <!-- <text>总订量:{{sumCount}}</text> -->
     </view>
-    <view class='row2'>
+    <view class="row2">
       <!-- <text>总订价:{{sumMoney}}</text> -->
       <text>总订量:{{sumCount}}</text>
     </view>
-    <view class='row3'>
+    <view class="row3 van-hairline--top-bottom">
       <van-cell
         title="{{ address ? address : '请选择收货地址' }}"
         label="{{ expressWay ? expressWay : '' }}"
         is-link
         center
+        border="{{ false }}"
         bind:click="chooseAddressAction"
       />
-      <!-- <text>{{address.length>0? address:"请选择收货地址"}}</text>
-      <view class='arrow'>
-        <zan-icon type='arrow'></zan-icon>
-      </view> -->
     </view>
     <view class="row4" wx:if="{{orderType !== 'backOrder'}}">
       <van-field value="{{ expressNumber }}" placeholder="请填写快递单号" bind:change="onChangeExpress"></van-field>
     </view>
-    <view class='row bot'>
-      <button bindtap='submitOrderAction'>提交</button>
+    <view class="row bot">
+      <van-button
+        round
+        block
+        type="primary"
+        bind:click="submitOrderAction"
+      >提交</van-button>
     </view>
   </view>
-</pop-bottom>
+</page-container>

@@ -96,6 +96,7 @@ page {
   padding-left: 5px;
   padding-right: 5px;
   margin-bottom: 20rpx;
+  box-sizing: border-box;
 }
 .fashion-container {
   padding-left: 20rpx;

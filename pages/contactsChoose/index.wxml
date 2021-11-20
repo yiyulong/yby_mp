@@ -1,11 +1,25 @@
-<view class='contents'>
-
-  <block wx:for="{{contactsData}}" wx:for-index="idx" wx:for-item="contact" wx:key="idx">
-    <view class='list' bindtap='chooseContact' data-contact='{{contact}}'>
-      <contacts-cell contactData="{{contact}}"></contacts-cell>
+<view class="page-container">
+  <view class='contents'>
+    <scroll-view scroll-y enable-back-to-top>
+      <block wx:for="{{contactsData}}" wx:for-index="idx" wx:for-item="contact" wx:key="idx">
+        <view class='list' bindtap='chooseContact' data-contact='{{contact}}'>
+          <contacts-cell contactData="{{contact}}"></contacts-cell>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <view class='action'>
+    <view class="btn">
+      <van-button
+        round
+        block
+        icon="plus"
+        type="primary"
+        bind:click="addAddressAction"
+      >添加新地址</van-button>
     </view>
-  </block>
-
+    <view class="safe-area-inset-bottom" />
+  </view>
 </view>
 <van-popup
   show="{{ show }}"
@@ -31,6 +45,3 @@
     </view>
   </view>
 </van-popup>
-<view class='butt'>
-  <button bindtap='addAddressAction'>添加新地址</button>
-</view>

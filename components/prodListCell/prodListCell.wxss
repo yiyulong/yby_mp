@@ -1,5 +1,5 @@
 .container {
-  margin-bottom: 20rpx;
+  margin-bottom: 10rpx;
   font-size: 28rpx;
   background-color: #fff;
   box-shadow: 0rpx 4rpx 6rpx 7rpx rgba(243, 243, 243, 0.5);

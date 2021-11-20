@@ -1,6 +1,7 @@
 {
   "enablePullDownRefresh": false,
   "usingComponents": {
-    "zan-icon": "/common/lib/zanUI/icon/index"
+    "zan-icon": "/common/lib/zanUI/icon/index",
+    "van-button": "@vant/weapp/button/index"
   }
 }

@@ -8,10 +8,6 @@
   font-weight:100;
 }
 
-page, view {
-  box-sizing: border-box;
-}
-
 page {
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
     Segoe UI, Arial, Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei',
@@ -27,6 +23,11 @@ page {
   --sub-textColor: #5a5959;
 
   --activeColor: #ce0000;
+
+  --button-primary-background-color: #000;
+  --button-primary-border-color: #000;
+
+  background: #f7f7f7;
 }
 
 /* titleGroup.wxml template样式 */

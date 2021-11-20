@@ -2,7 +2,8 @@
   "navigationBarTitleText": "管理收货地址",
   "usingComponents": {
     "contacts-cell": "/components/contactsCell/contactsCell",
-    "contacts-butt-cell": "/components/contactsButtCell/contactsButtCell"
+    "contacts-butt-cell": "/components/contactsButtCell/contactsButtCell",
+    "van-button": "@vant/weapp/button/index"
   },
-  "enablePullDownRefresh": false
+  "disableScroll": true
 }

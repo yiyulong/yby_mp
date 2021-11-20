@@ -72,7 +72,7 @@ Page({
       if (ret.data) {
         if (ret.data) {
           this.setData({
-            contactsData: ret.data
+            contactsData: ret.data.reverse()
           });
         }
         // console.log(JSON.stringify(ret.data));

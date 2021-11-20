@@ -62,7 +62,8 @@ Page({
       from: 'cart',
       orderType: 'backOrder'
     },
-    expressNumber: ''
+    expressNumber: '',
+    show: false
   },
 
   /**
@@ -289,10 +290,6 @@ Page({
       this.refreshCheckStatus()
     }
   },
-  /**
-   * 底部下单弹出框消失事件回调
-   */
-  dismissPop: function() {},
   /** 确认订单按钮 */
   calculationAction: function() {
     // 在此判断是否勾选产品
@@ -300,7 +297,7 @@ Page({
       app.showMsg("未选择商品");
       return;
     }
-    this.selectComponent("#popup").showModal();
+    this.setData({ show: true })
   },
   /** 选择收货地址 */
   chooseAddressAction: function() {
@@ -367,9 +364,10 @@ Page({
       sumCount: 0, // 总计量
       sumMoney: 0, // 总价
       checkStyleObj: {},
-      isCheckAll: false
+      isCheckAll: false,
+      show: false
     });
-    this.selectComponent("#popup").hideModal();
+    // this.selectComponent("#popup").hideModal();
   },
 
   /**
@@ -418,5 +416,6 @@ Page({
         isCheckAll: false
       });
     }
-  }
+  },
+  _enter () {}
 })

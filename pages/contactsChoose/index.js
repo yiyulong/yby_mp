@@ -74,7 +74,7 @@ Page({
     app.nGet(data).then(ret => {
       if (ret.data) {
         this.setData({
-          contactsData: ret.data
+          contactsData: ret.data.reverse()
         });
       }
     }, res => {

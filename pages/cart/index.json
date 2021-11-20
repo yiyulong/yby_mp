@@ -3,10 +3,10 @@
   "usingComponents": {
     "zan-icon": "/common/lib/zanUI/icon/index",
     "prod-list-cell": "/components/prodListCell/prodListCell",
-    "pop-bottom": "/components/popBottom/popBottom",
     "zan-loadmore": "/common/lib/zanUI/loadmore/index",
     "my-tabs": "/components/my-tabs/index",
     "van-field": "@vant/weapp/field/index",
-    "van-cell": "@vant/weapp/cell/index"
+    "van-cell": "@vant/weapp/cell/index",
+    "van-button": "@vant/weapp/button/index"
   }
 }

@@ -1,8 +1,6 @@
 /**login index.wxss**/
 page {
-  text-align: center;
-  padding-left: 80rpx;
-  padding-right: 80rpx;
+  background: #fff;
 }
 
 /* 品牌名称 */
@@ -14,12 +12,15 @@ page {
 /* 封面 */
 .cover {
   margin-top: 40rpx;
-  /* padding: 0 30rpx; */
+  padding: 0 80rpx;
 }
 .cover image {
   width: 100%;
-  /* max-width: 100%;
-  min-height: 50vh; */
+  vertical-align: middle;
+}
+.form {
+  margin-top: 40rpx;
+  padding: 0 80rpx;
 }
 
 /* 登陆按钮 */
